@@ -277,6 +277,78 @@ svg { display: block; width: 100%; }
 .badge-trigger{background:#FCEBEB;color:#A32D2D;border-color:#F09595}
 .badge-new{background:#FEF3C7;color:#92400E;border-color:#F59E0B;font-weight:500}
 .col{display:flex;flex-direction:column;gap:6px}
+
+/* ── mobile responsive ── */
+@media (max-width: 680px) {
+
+  /* body becomes column */
+  body { flex-direction: column; }
+
+  /* hide left nav */
+  .left-nav { display: none; }
+
+  /* bottom tab bar */
+  .bottom-nav {
+    display: flex !important;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: #124275;
+    z-index: 200;
+    border-top: 0.5px solid rgba(255,255,255,0.15);
+    height: 56px;
+  }
+  .bottom-nav-tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    gap: 3px;
+    padding: 6px 2px;
+    transition: background .12s;
+    user-select: none;
+  }
+  .bottom-nav-tab:hover { background: rgba(255,255,255,0.08); }
+  .bottom-nav-tab.active { background: rgba(255,255,255,0.13); }
+  .bottom-nav-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .bottom-nav-label {
+    font-size: 9px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.2;
+    text-align: center;
+  }
+  .bottom-nav-tab.active .bottom-nav-label { color: #fff; font-weight: 500; }
+
+  /* main content full width, add bottom padding for tab bar */
+  .main {
+    padding: 20px 16px 72px;
+    width: 100%;
+  }
+
+  /* tighten grids to single column */
+  .grid-2, .grid-3 { grid-template-columns: 1fr; }
+
+  /* watch grid: 2 cols on mobile */
+  .watch-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 16px !important; }
+
+  /* wireframe grid: 3 cols on mobile is too small, use 2 */
+  .wf-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  .wf-grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+
+  /* section svg full width */
+  .section svg { width: 100% !important; }
+
+  /* sub-tabs wrap nicely */
+  .sub-tabs { gap: 4px; }
+  .sub-tab { font-size: 10px; padding: 4px 10px; }
+
+  /* overview summary cards */
+  .grid-3 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+
+/* hide bottom nav on desktop */
+.bottom-nav { display: none; }
 </style>
 </head>
 <body>
@@ -2531,6 +2603,9 @@ function switchPage(n) {
   document.querySelectorAll('.nav-tab').forEach((t,i) => {
     t.classList.toggle('active', i === n);
   });
+  document.querySelectorAll('.bottom-nav-tab').forEach((t,i) => {
+    t.classList.toggle('active', i === n);
+  });
   window.scrollTo(0, 0);
 }
 function switchSub(page, sub) {
@@ -2542,5 +2617,32 @@ function switchSub(page, sub) {
 </script>
 
 </div>
+
+<nav class="bottom-nav" id="bottomNav">
+  <div class="bottom-nav-tab active" onclick="switchPage(0)" id="btab0">
+    <div class="bottom-nav-dot" style="background:#90CFF6"></div>
+    <div class="bottom-nav-label">总览</div>
+  </div>
+  <div class="bottom-nav-tab" onclick="switchPage(1)" id="btab1">
+    <div class="bottom-nav-dot" style="background:#BCE1FD"></div>
+    <div class="bottom-nav-label">装置</div>
+  </div>
+  <div class="bottom-nav-tab" onclick="switchPage(2)" id="btab2">
+    <div class="bottom-nav-dot" style="background:#5DCAA5"></div>
+    <div class="bottom-nav-label">呼吸</div>
+  </div>
+  <div class="bottom-nav-tab" onclick="switchPage(3)" id="btab3">
+    <div class="bottom-nav-dot" style="background:#EF9F27"></div>
+    <div class="bottom-nav-label">手机</div>
+  </div>
+  <div class="bottom-nav-tab" onclick="switchPage(4)" id="btab4">
+    <div class="bottom-nav-dot" style="background:#7F77DD"></div>
+    <div class="bottom-nav-label">手表</div>
+  </div>
+  <div class="bottom-nav-tab" onclick="switchPage(5)" id="btab5">
+    <div class="bottom-nav-dot" style="background:#F09595"></div>
+    <div class="bottom-nav-label">三端</div>
+  </div>
+</nav>
 </body>
 </html>
