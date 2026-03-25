@@ -55,6 +55,7 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .card{background:#fff;border:0.5px solid #d4d0c8;border-radius:10px;padding:13px 15px}
 .card-title{font-size:12px;font-weight:500;color:#1a1a1a;margin-bottom:7px}
+.card-body{font-size:11px;color:#444;line-height:1.75}
 .card-
 .chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
 .chip{display:inline-block;font-size:10px;padding:2px 7px;border-radius:20px;border:0.5px solid #d4d0c8;background:#f0ece4;color:#666}
@@ -79,12 +80,9 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .section svg{display:block;width:100%}
 
 /* ── 界面清单卡片 ── */
-.inv-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; margin-bottom: 4px; }
+
 .inv-grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
-.inv-card {
-  background: #fff; border: 0.5px solid #d4d0c8;
-  border-radius: 10px; padding: 13px 14px;
-}
+
 .inv-tag {
   display: inline-block; font-size: 10px; padding: 2px 8px;
   border-radius: 20px; margin-bottom: 7px; font-weight: 500;
@@ -92,9 +90,9 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .tag-b { background: #E1EFFE; color: #0A3D72; border: 0.5px solid #3B82F6; }
 .tag-c { background: #FAECE7; color: #712B13; border: 0.5px solid #D85A30; }
 .tag-g { background: #F1EFE8; color: #444441; border: 0.5px solid #888780; }
-.inv-title { font-size: 12.5px; font-weight: 500; color: #1a1a1a; margin-bottom: 3px; }
-.inv-id { font-size: 10px; color: #aaa; margin-bottom: 7px; }
-.inv-row { font-size: 10.5px; color: #666; line-height: 1.65; display: flex; gap: 5px; }
+
+
+
 .inv-row:before { content: "—"; color: #bbb; flex-shrink: 0; }
 .inv-trigger {
   margin-top: 8px; padding-top: 7px;
@@ -115,7 +113,7 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
   background: #fff; border: 0.5px solid #d4d0c8;
   border-radius: 10px; padding: 13px 14px;
 }
-.inv-tag { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; margin-bottom: 7px; font-weight: 500; }
+
 .tag-a { background: #FAEEDA; color: #633806; border: 0.5px solid #EF9F27; }
 .tag-c { background: #FAECE7; color: #712B13; border: 0.5px solid #D85A30; }
 .tag-b { background: #E1EFFE; color: #0A3D72; border: 0.5px solid #3B82F6; }
@@ -124,7 +122,7 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .inv-id { font-size: 10px; color: #aaa; margin-bottom: 7px; }
 .inv-row { font-size: 10.5px; color: #666; line-height: 1.65; display: flex; gap: 5px; }
 .inv-row:before { content: "—"; color: #bbb; flex-shrink: 0; }
-.inv-trigger { margin-top: 8px; padding-top: 7px; border-top: 0.5px solid #e8e4dc; font-size: 10px; color: #aaa; }
+
 
 /* 感知模块说明 */
 .sense-box {
@@ -255,8 +253,8 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .td-arr { font-size: 10px; color: #bbb; flex-shrink: 0; }
 .td-note { font-size: 10px; color: #999; margin-left: 4px; }
 .section { margin-bottom: 52px; }
-h2 { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
-p  { font-size: 11px; color: #999; margin-bottom: 20px; }
+.section h2 { font-size: 14px; font-weight: 500; margin-bottom: 4px; color: #1a1a1a; }
+.section p { font-size: 11px; color: #999; margin-bottom: 20px; }
 svg { display: block; width: 100%; }
 
 /* IA node styles */
@@ -314,10 +312,10 @@ svg { display: block; width: 100%; }
 
   .grid-2 { grid-template-columns: 1fr !important; }
   .grid-3 { grid-template-columns: 1fr !important; }
-  .watch-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 14px !important; }
+  
   .wf-grid { grid-template-columns: repeat(3, minmax(0,1fr)) !important; }
   .wf-grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
-  .inv-grid { grid-template-columns: 1fr !important; }
+  
   .section svg { width: 100% !important; }
   .sub-tab { font-size: 10px; padding: 4px 9px; }
   .phase-row { flex-direction: column; }
