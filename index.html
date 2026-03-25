@@ -1,0 +1,2546 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>毕设展览方案 · 叶莹滢</title>
+<style>
+/* reset */
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:#f7f4ef;color:#1a1a1a;display:flex;min-height:100vh}
+
+/* left nav */
+.left-nav{width:160px;flex-shrink:0;position:sticky;top:0;height:100vh;background:#124275;display:flex;flex-direction:column;overflow-y:auto}
+.nav-logo{padding:18px 14px 14px;border-bottom:0.5px solid rgba(255,255,255,0.1)}
+.nav-logo-title{font-size:11px;font-weight:500;color:#fff;line-height:1.6;margin-bottom:8px}
+.nav-author{font-size:9.5px;color:rgba(255,255,255,0.6);margin-bottom:3px}
+.nav-meta{font-size:9px;color:rgba(255,255,255,0.32);line-height:1.9}
+.nav-tabs{display:flex;flex-direction:column;gap:2px;padding:10px 8px;flex:1}
+.nav-tab{display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:7px;cursor:pointer;transition:background .12s;user-select:none}
+.nav-tab:hover{background:rgba(255,255,255,0.08)}
+.nav-tab.active{background:rgba(255,255,255,0.13)}
+.nav-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.nav-label{font-size:10.5px;color:rgba(255,255,255,0.5);line-height:1.35}
+.nav-tab.active .nav-label{color:#fff;font-weight:500}
+.nav-tab:hover .nav-label{color:rgba(255,255,255,0.85)}
+
+/* main */
+.main{flex:1;min-width:0;padding:28px 32px 64px}
+
+/* pages */
+.page{display:none}
+.page.active{display:block}
+
+/* sub tabs */
+.sub-tabs{display:flex;gap:6px;margin-bottom:16px;flex-wrap:wrap}
+.sub-tab{font-size:10.5px;padding:5px 12px;border-radius:20px;border:0.5px solid #d4d0c8;background:#fff;color:#666;cursor:pointer;transition:all .12s;user-select:none}
+.sub-tab:hover{background:#f0ece4}
+.sub-tab.active{background:#1a1a1a;color:#fff;border-color:#1a1a1a}
+.sub-panel{display:none}
+.sub-panel.active{display:block}
+
+/* shared content styles */
+.page-title{font-size:15px;font-weight:600;margin-bottom:4px;color:#1a1a1a}
+.page-sub{font-size:11px;color:#999;margin-bottom:20px}
+.section-label{font-size:11px;font-weight:500;color:#999;letter-spacing:0.08em;margin:0 0 12px 2px;text-transform:uppercase}
+.sec-head{font-size:12.5px;font-weight:500;padding:10px 14px;border-left:3px solid;margin-bottom:12px}
+.sec-head.blue{border-color:#1560A8;background:#E1EFFE;color:#0A3D72}
+.sec-head.teal{border-color:#0F6E56;background:#E1F5EE;color:#085041}
+.sec-head.amber{border-color:#BA7517;background:#FAEEDA;color:#633806}
+.sec-head.gray{border-color:#5F5E5A;background:#F1EFE8;color:#444441}
+.sec-head.coral{border-color:#993C1D;background:#FAECE7;color:#712B13}
+.sec-head.purple{border-color:#534AB7;background:#EEEDFE;color:#3C3489}
+.divider{height:1px;background:#d4d0c8;margin:24px 0 20px}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.card{background:#fff;border:0.5px solid #d4d0c8;border-radius:10px;padding:13px 15px}
+.card-title{font-size:12px;font-weight:500;color:#1a1a1a;margin-bottom:7px}
+.card-body{font-size:11px;color:#666;line-height:1.75}
+.chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.chip{display:inline-block;font-size:10px;padding:2px 7px;border-radius:20px;border:0.5px solid #d4d0c8;background:#f0ece4;color:#666}
+.chip.blue{background:#E1EFFE;color:#0A3D72;border-color:#3B82F6}
+.chip.teal{background:#E1F5EE;color:#085041;border-color:#1D9E75}
+.chip.amber{background:#FAEEDA;color:#633806;border-color:#EF9F27}
+.chip.gray{background:#F1EFE8;color:#444441;border-color:#888780}
+.chip.coral{background:#FAECE7;color:#712B13;border-color:#D85A30}
+.chip.purple{background:#EEEDFE;color:#3C3489;border-color:#7F77DD}
+.chip.must{background:#E1F5EE;color:#085041;border-color:#1D9E75;font-weight:500}
+.flow{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-top:8px}
+.flow-node{font-size:10px;padding:4px 10px;border-radius:6px;background:#f7f4ef;color:#666;border:0.5px solid #d4d0c8}
+.flow-node.act{background:#E1EFFE;color:#0A3D72;border-color:#3B82F6}
+.flow-arr{font-size:10px;color:#bbb}
+.note{font-size:10px;color:#999;margin-top:7px;padding-top:7px;border-top:0.5px solid #e8e4dc}
+.quote-block{padding:6px 10px;border-radius:5px;border-left:3px solid;font-size:10.5px;line-height:1.5}
+
+/* diagrams */
+.section{margin-bottom:52px}
+.section h2{font-size:14px;font-weight:500;margin-bottom:4px;color:#1a1a1a}
+.section p{font-size:11px;color:#999;margin-bottom:20px}
+.section svg{display:block;width:100%}
+
+/* ── 界面清单卡片 ── */
+.inv-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; margin-bottom: 4px; }
+.inv-grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.inv-card {
+  background: #fff; border: 0.5px solid #d4d0c8;
+  border-radius: 10px; padding: 13px 14px;
+}
+.inv-tag {
+  display: inline-block; font-size: 10px; padding: 2px 8px;
+  border-radius: 20px; margin-bottom: 7px; font-weight: 500;
+}
+.tag-b { background: #E1EFFE; color: #0A3D72; border: 0.5px solid #3B82F6; }
+.tag-c { background: #FAECE7; color: #712B13; border: 0.5px solid #D85A30; }
+.tag-g { background: #F1EFE8; color: #444441; border: 0.5px solid #888780; }
+.inv-title { font-size: 12.5px; font-weight: 500; color: #1a1a1a; margin-bottom: 3px; }
+.inv-id { font-size: 10px; color: #aaa; margin-bottom: 7px; }
+.inv-row { font-size: 10.5px; color: #666; line-height: 1.65; display: flex; gap: 5px; }
+.inv-row:before { content: "—"; color: #bbb; flex-shrink: 0; }
+.inv-trigger {
+  margin-top: 8px; padding-top: 7px;
+  border-top: 0.5px solid #e8e4dc;
+  font-size: 10px; color: #aaa;
+}
+.inv-trigger span { color: #888; }
+
+/* ── 线框图网格 ── */
+.wf-grid { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 16px; margin-bottom: 4px; }
+.wf-grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+.wf-cell { display: flex; flex-direction: column; align-items: center; gap: 7px; }
+.wf-label { font-size: 11px; font-weight: 500; color: #1a1a1a; text-align: center; }
+.wf-sub { font-size: 10px; color: #999; text-align: center; }
+/* 清单卡片 */
+.inv-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; margin-bottom: 4px; }
+.inv-card {
+  background: #fff; border: 0.5px solid #d4d0c8;
+  border-radius: 10px; padding: 13px 14px;
+}
+.inv-tag { display: inline-block; font-size: 10px; padding: 2px 8px; border-radius: 20px; margin-bottom: 7px; font-weight: 500; }
+.tag-a { background: #FAEEDA; color: #633806; border: 0.5px solid #EF9F27; }
+.tag-c { background: #FAECE7; color: #712B13; border: 0.5px solid #D85A30; }
+.tag-b { background: #E1EFFE; color: #0A3D72; border: 0.5px solid #3B82F6; }
+.tag-t { background: #E1F5EE; color: #085041; border: 0.5px solid #1D9E75; }
+.inv-title { font-size: 12.5px; font-weight: 500; color: #1a1a1a; margin-bottom: 3px; }
+.inv-id { font-size: 10px; color: #aaa; margin-bottom: 7px; }
+.inv-row { font-size: 10.5px; color: #666; line-height: 1.65; display: flex; gap: 5px; }
+.inv-row:before { content: "—"; color: #bbb; flex-shrink: 0; }
+.inv-trigger { margin-top: 8px; padding-top: 7px; border-top: 0.5px solid #e8e4dc; font-size: 10px; color: #aaa; }
+
+/* 感知模块说明 */
+.sense-box {
+  background: #fff; border: 0.5px solid #d4d0c8; border-radius: 10px;
+  padding: 14px 16px; margin-bottom: 12px;
+}
+.sense-box .title { font-size: 12.5px; font-weight: 500; color: #1a1a1a; margin-bottom: 6px; }
+.sense-box .desc { font-size: 11px; color: #666; line-height: 1.7; }
+
+
+
+
+
+
+
+
+/* 表盘图 */
+.watch-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 24px; }
+.ww-cell { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.ww-label { font-size: 12px; font-weight: 500; color: #1a1a1a; text-align: center; }
+.ww-id { font-size: 10px; color: #999; }
+.ww-desc { font-size: 10px; color: #666; text-align: center; line-height: 1.6; }
+.ww-trigger { font-size: 9.5px; color: #999; text-align: center; padding: 4px 10px; background: #f0ece4; border-radius: 6px; }
+.row { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 8px; flex-wrap: wrap; }
+.node {
+  border-radius: 8px; padding: 7px 11px; font-size: 12px; line-height: 1.45;
+  border: 0.5px solid #d4d0c8; background: #ffffff; color: #1a1a1a; min-width: 110px;
+}
+.node .label { font-weight: 500; font-size: 12px; display: block; }
+.node .desc { font-size: 10.5px; color: #888; margin-top: 2px; line-height: 1.4; }
+.n-root { background: #1a1a1a; color: #fff; border-color: #1a1a1a; font-size: 13px; font-weight: 500; text-align: center; min-width: 160px; }
+.n-sec { border-left: 3px solid #888; border-radius: 0; background: #f0ece4; min-width: 100px; font-size: 11.5px; }
+.n-sec.blue   { border-color: #1560A8; } .n-sec.blue   .label { color: #0A3D72; }
+.n-sec.teal   { border-color: #0F6E56; } .n-sec.teal   .label { color: #085041; }
+.n-sec.purple { border-color: #534AB7; } .n-sec.purple .label { color: #3C3489; }
+.n-sec.coral  { border-color: #993C1D; } .n-sec.coral  .label { color: #712B13; }
+.n-sec.amber  { border-color: #BA7517; } .n-sec.amber  .label { color: #633806; }
+.n-sec.gray   { border-color: #5F5E5A; } .n-sec.gray   .label { color: #444441; }
+
+
+
+
+
+
+
+
+.hline { height: 1px; background: #c8c4bc; width: 12px; flex-shrink: 0; margin-top: 14px; }
+.badge { display: inline-block; font-size: 9.5px; padding: 1px 6px; border-radius: 20px; vertical-align: middle; margin-left: 4px; border: 0.5px solid #d4d0c8; background: #f0ece4; color: #666; }
+.badge-trigger { background: #FCEBEB; color: #A32D2D; border-color: #F09595; }
+
+.col { display: flex; flex-direction: column; gap: 6px; }
+.row { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 8px; flex-wrap: wrap; }
+.node { border-radius: 8px; padding: 7px 11px; font-size: 12px; line-height: 1.45; border: 0.5px solid #d4d0c8; background: #ffffff; color: #1a1a1a; min-width: 110px; }
+.node .label { font-weight: 500; font-size: 12px; display: block; }
+.node .desc { font-size: 10.5px; color: #888; margin-top: 2px; line-height: 1.4; }
+.n-root { background: #1a1a1a; color: #fff; border-color: #1a1a1a; font-size: 13px; font-weight: 500; text-align: center; min-width: 160px; }
+.n-sec { border-left: 3px solid #888; border-radius: 0; background: #f0ece4; min-width: 100px; font-size: 11.5px; }
+.n-sec.amber  { border-color: #BA7517; } .n-sec.amber  .label { color: #633806; }
+.n-sec.blue   { border-color: #1560A8; } .n-sec.blue   .label { color: #0A3D72; }
+.n-sec.coral  { border-color: #993C1D; } .n-sec.coral  .label { color: #712B13; }
+.n-sec.teal   { border-color: #0F6E56; } .n-sec.teal   .label { color: #085041; }
+.n-sec.gray   { border-color: #5F5E5A; } .n-sec.gray   .label { color: #444441; }
+
+
+
+
+
+
+
+
+.hline { height: 1px; background: #c8c4bc; width: 12px; flex-shrink: 0; margin-top: 14px; }
+.badge { display: inline-block; font-size: 9.5px; padding: 1px 6px; border-radius: 20px; vertical-align: middle; margin-left: 4px; border: 0.5px solid #d4d0c8; background: #f0ece4; color: #666; }
+.badge-trigger { background: #FCEBEB; color: #A32D2D; border-color: #F09595; }
+.badge-new     { background: #FEF3C7; color: #92400E; border-color: #F59E0B; font-weight: 500; }
+
+.col { display: flex; flex-direction: column; gap: 6px; }
+
+
+.quote { font-size: 10.5px; color: #633806; background: #FAEEDA; border-left: 3px solid #EF9F27; padding: 5px 10px; margin-top: 5px; border-radius: 0 4px 4px 0; line-height: 1.5; }
+.card-
+
+
+
+
+
+
+
+
+
+
+/* 流程箭头 */
+
+
+
+
+
+/* 呼吸阶段可视化 */
+.phase-row { display: flex; gap: 0; margin: 14px 0 8px; align-items: stretch; }
+.phase-block { display: flex; flex-direction: column; justify-content: center; padding: 12px 10px; }
+.phase-block .ph-name { font-size: 11px; font-weight: 500; margin-bottom: 3px; }
+.phase-block .ph-sec  { font-size: 10px; }
+.phase-block .ph-desc { font-size: 10px; margin-top: 6px; line-height: 1.5; }
+
+/* 视觉状态卡片 */
+.vis-card {
+  background: #fff; border: 0.5px solid #d4d0c8;
+  border-radius: 10px; overflow: hidden;
+}
+.vis-preview {
+  height: 110px; display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.vis-info { padding: 10px 13px; }
+.vis-title { font-size: 11.5px; font-weight: 500; color: #1a1a1a; margin-bottom: 4px; }
+.vis-desc { font-size: 10.5px; color: #666; line-height: 1.6; }
+
+/* TD节点链路 */
+.node-chain { display: flex; flex-direction: column; gap: 6px; }
+.node-row { display: flex; align-items: center; gap: 6px; }
+.td-node {
+  font-size: 10px; padding: 4px 10px; border-radius: 4px;
+  border: 0.5px solid; font-family: ui-monospace, monospace;
+}
+.td-node.chop { background: #FAEEDA; color: #633806; border-color: #EF9F27; }
+.td-node.top  { background: #E1EFFE; color: #0A3D72; border-color: #3B82F6; }
+.td-node.sop  { background: #E1F5EE; color: #085041; border-color: #1D9E75; }
+.td-node.out  { background: #F1EFE8; color: #444441; border-color: #888780; }
+.td-arr { font-size: 10px; color: #bbb; flex-shrink: 0; }
+.td-note { font-size: 10px; color: #999; margin-left: 4px; }
+.section { margin-bottom: 52px; }
+h2 { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+p  { font-size: 11px; color: #999; margin-bottom: 20px; }
+svg { display: block; width: 100%; }
+
+/* IA node styles */
+.row{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px;flex-wrap:wrap}
+.node{border-radius:8px;padding:7px 11px;font-size:12px;line-height:1.45;border:0.5px solid #d4d0c8;background:#fff;color:#1a1a1a;min-width:110px}
+.node .label{font-weight:500;font-size:12px;display:block}
+.node .desc{font-size:10.5px;color:#888;margin-top:2px;line-height:1.4}
+.n-root{background:#1a1a1a;color:#fff;border-color:#1a1a1a;font-size:13px;font-weight:500;text-align:center;min-width:160px}
+.n-sec{border-left:3px solid #888;border-radius:0;background:#f0ece4;min-width:100px;font-size:11.5px}
+.n-sec.blue{border-color:#1560A8}.n-sec.blue .label{color:#0A3D72}
+.n-sec.teal{border-color:#0F6E56}.n-sec.teal .label{color:#085041}
+.n-sec.purple{border-color:#534AB7}.n-sec.purple .label{color:#3C3489}
+.n-sec.coral{border-color:#993C1D}.n-sec.coral .label{color:#712B13}
+.n-sec.amber{border-color:#BA7517}.n-sec.amber .label{color:#633806}
+.n-sec.gray{border-color:#5F5E5A}.n-sec.gray .label{color:#444441}
+.hline{height:1px;background:#c8c4bc;width:12px;flex-shrink:0;margin-top:14px}
+.badge{display:inline-block;font-size:9.5px;padding:1px 6px;border-radius:20px;vertical-align:middle;margin-left:4px;border:0.5px solid #d4d0c8;background:#f0ece4;color:#666}
+.badge-trigger{background:#FCEBEB;color:#A32D2D;border-color:#F09595}
+.badge-new{background:#FEF3C7;color:#92400E;border-color:#F59E0B;font-weight:500}
+.col{display:flex;flex-direction:column;gap:6px}
+</style>
+</head>
+<body>
+
+<nav class="left-nav">
+  <div class="nav-logo">
+    <div class="nav-logo-title">家长情绪失衡<br/>干预设计</div>
+    <div class="nav-author">叶莹滢</div>
+    <div class="nav-meta">2022级 · 广州美术学院<br/>产品设计系<br/>指导老师：林敏</div>
+  </div>
+  <div class="nav-tabs">
+    <div class="nav-tab active" onclick="switchPage(0)" id="tab0">
+      <div class="nav-dot" style="background:#90CFF6"></div>
+      <div class="nav-label">展览总览<br/>体验流程</div>
+    </div>
+    <div class="nav-tab" onclick="switchPage(1)" id="tab1">
+      <div class="nav-dot" style="background:#BCE1FD"></div>
+      <div class="nav-label">作业情境<br/>托管装置</div>
+    </div>
+    <div class="nav-tab" onclick="switchPage(2)" id="tab2">
+      <div class="nav-dot" style="background:#5DCAA5"></div>
+      <div class="nav-label">呼吸互动<br/>装置</div>
+    </div>
+    <div class="nav-tab" onclick="switchPage(3)" id="tab3">
+      <div class="nav-dot" style="background:#EF9F27"></div>
+      <div class="nav-label">手机端<br/>原型</div>
+    </div>
+    <div class="nav-tab" onclick="switchPage(4)" id="tab4">
+      <div class="nav-dot" style="background:#7F77DD"></div>
+      <div class="nav-label">手表端<br/>原型</div>
+    </div>
+    <div class="nav-tab" onclick="switchPage(5)" id="tab5">
+      <div class="nav-dot" style="background:#F09595"></div>
+      <div class="nav-label">三端联动<br/>关系</div>
+    </div>
+  </div>
+</nav>
+
+<div class="main">
+
+<div class="page active" id="page0">
+<p class="page-title">毕设展览方案</p>
+<p class="page-sub">小学作业辅导中家长情绪失衡问题的研究与干预设计 · 叶莹滢 · 广州美术学院产品设计系 · 指导老师：林敏</p>
+<p class="page-title">毕设展览方案</p>
+<p class="page-sub">小学作业辅导中家长情绪失衡问题的研究与干预设计 · 叶莹滢 · 广州美术学院产品设计系 2025届</p>
+
+<!-- 总览 -->
+<p class="section-label">展示项目总览</p>
+<div class="grid-3" style="margin-bottom:4px">
+  <div class="card" style="border-left:3px solid #1560A8">
+    <div class="card-title" style="color:#0A3D72">1 · 作业情境托管装置</div>
+    <div class="card-body">实物原型系列 3—5件 · 光效语音联动演示</div>
+  </div>
+  <div class="card" style="border-left:3px solid #0F6E56">
+    <div class="card-title" style="color:#085041">2 · 呼吸互动装置</div>
+    <div class="card-body">水面波纹意象 · 麦克风感应 · TD 实时渲染</div>
+  </div>
+  <div class="card" style="border-left:3px solid #BA7517">
+    <div class="card-title" style="color:#633806">3 · 手机界面交互原型</div>
+    <div class="card-body">Figma Prototype · 手机固定支架 · 5个核心界面</div>
+  </div>
+  <div class="card" style="border-left:3px solid #534AB7">
+    <div class="card-title" style="color:#3C3489">4 · 手表界面交互原型</div>
+    <div class="card-body">Apple Watch 实机 · 6个状态界面演示</div>
+  </div>
+  <div class="card" style="border-left:3px solid #5F5E5A">
+    <div class="card-title" style="color:#444441">5 · 展板</div>
+    <div class="card-body">选题介绍 · 信息架构 · 产品功能展示</div>
+  </div>
+  <div class="card" style="border-left:3px solid #993C1D">
+    <div class="card-title" style="color:#712B13">6 · 产品使用视频</div>
+    <div class="card-body">完整使用场景演示 · 循环播放</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 观众完整体验流程 -->
+<p class="section-label">观众完整体验流程</p>
+
+<!-- 总流程横向时间轴 -->
+<div style="background:#fff;border:0.5px solid #d4d0c8;border-radius:10px;padding:16px 18px;margin-bottom:12px">
+  <div style="font-size:10px;color:#999;margin-bottom:10px">建议体验时长：15—20分钟完整体验 · 5分钟快速体验（仅核心互动）</div>
+  <div style="display:flex;gap:0;align-items:stretch">
+
+    <div style="flex:1;border-right:0.5px solid #e8e4dc;padding-right:12px">
+      <div style="font-size:10px;font-weight:500;color:#999;margin-bottom:8px;letter-spacing:0.06em">第一步 · 进入</div>
+      <div style="font-size:11px;color:#1a1a1a;font-weight:500;margin-bottom:4px">观看视频</div>
+      <div style="font-size:10.5px;color:#666;line-height:1.6">循环播放的产品使用视频，了解辅导场景和三端系统概念</div>
+      <div style="margin-top:6px;font-size:10px;color:#999">约 3—4 分钟</div>
+    </div>
+
+    <div style="flex:1;border-right:0.5px solid #e8e4dc;padding:0 12px">
+      <div style="font-size:10px;font-weight:500;color:#999;margin-bottom:8px;letter-spacing:0.06em">第二步 · 理解</div>
+      <div style="font-size:11px;color:#1a1a1a;font-weight:500;margin-bottom:4px">看展板</div>
+      <div style="font-size:10.5px;color:#666;line-height:1.6">选题背景、情绪三阶段框架、三端联动关系图，建立系统认知</div>
+      <div style="margin-top:6px;font-size:10px;color:#999">约 3—5 分钟</div>
+    </div>
+
+    <div style="flex:1;border-right:0.5px solid #e8e4dc;padding:0 12px">
+      <div style="font-size:10px;font-weight:500;color:#999;margin-bottom:8px;letter-spacing:0.06em">第三步 · 触碰</div>
+      <div style="font-size:11px;color:#1a1a1a;font-weight:500;margin-bottom:4px">体验装置 + 原型</div>
+      <div style="font-size:10.5px;color:#666;line-height:1.6">操作手机原型感受辅导流程，切换 Watch 状态，观察装置光效联动</div>
+      <div style="margin-top:6px;font-size:10px;color:#999">约 3—5 分钟</div>
+    </div>
+
+    <div style="flex:1;padding-left:12px">
+      <div style="font-size:10px;font-weight:500;color:#999;margin-bottom:8px;letter-spacing:0.06em">第四步 · 感受</div>
+      <div style="font-size:11px;color:#1a1a1a;font-weight:500;margin-bottom:4px">呼吸互动装置</div>
+      <div style="font-size:10.5px;color:#666;line-height:1.6">对着水面波纹装置体验一次完整的呼吸引导，感受情绪平复的过程</div>
+      <div style="margin-top:6px;font-size:10px;color:#999">约 1 分钟</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 分步骤详细说明 -->
+<div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:4px">
+
+<div class="card">
+  <div class="card-title">进入展位 · 第一印象</div>
+  <div class="card-body">
+    观众走近展位，首先被循环播放的产品视频吸引——视频放在入口位置，3—4分钟内完整演示一次辅导冲突到系统介入的全过程。视频加字幕，展场嘈杂时仍可理解。<br/><br/>
+    同时可看到装置实物原型系列陈列在展台上，光效正在运行，形成视觉吸引。呼吸互动装置的水面也在缓慢波动，等待感应。
+    <div class="note">展位入口建议放一张「展位导览」小卡，标注各展品的位置和顺序。</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">阅读展板 · 建立认知</div>
+  <div class="card-body">
+    展板提供研究背景和产品系统的完整说明。观众按区块从上到下阅读：<br/><br/>
+    问题界定 → 情绪三阶段框架 → 三端联动关系图 → 呼吸机制可视化<br/><br/>
+    旁边的信息架构专项展板（A1横版）供深度感兴趣的观众查看，不需要每人都看完。
+    <div class="note">每个区块正文不超过60字，确保站立阅读时3分钟内可看完主展板。</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">体验装置与原型 · 动手操作</div>
+  <div class="card-body">
+    <div style="display:flex;flex-direction:column;gap:6px;margin-top:2px">
+      <div style="display:flex;gap:8px;align-items:flex-start">
+        <div style="min-width:6px;height:6px;border-radius:50%;background:#1560A8;margin-top:4px;flex-shrink:0"></div>
+        <div style="font-size:10.5px;color:#666;line-height:1.6"><span style="font-weight:500;color:#1a1a1a">装置</span>：观察三种光效变化，按键手动切换状态，听语音安抚内容</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:flex-start">
+        <div style="min-width:6px;height:6px;border-radius:50%;background:#BA7517;margin-top:4px;flex-shrink:0"></div>
+        <div style="font-size:10.5px;color:#666;line-height:1.6"><span style="font-weight:500;color:#1a1a1a">手机</span>：点触操作辅导流程，感受话语替代浮层、触发临界视图</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:flex-start">
+        <div style="min-width:6px;height:6px;border-radius:50%;background:#534AB7;margin-top:4px;flex-shrink:0"></div>
+        <div style="font-size:10.5px;color:#666;line-height:1.6"><span style="font-weight:500;color:#1a1a1a">手表</span>：切换 W-04 呼吸引导界面，观看张/缩圈动画</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:flex-start">
+        <div style="min-width:6px;height:6px;border-radius:50%;background:#993C1D;margin-top:4px;flex-shrink:0"></div>
+        <div style="font-size:10.5px;color:#666;line-height:1.6"><span style="font-weight:500;color:#1a1a1a">三端联动</span>：点击「模拟临界」，观察手机+手表+装置同时切换状态</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">呼吸互动装置 · 沉浸体验</div>
+  <div class="card-body">
+    走到呼吸互动装置前，俯视水面屏幕。水面初始呈现混乱波纹状态。<br/><br/>
+    对着麦克风，跟随旁边小卡片的提示慢慢呼气——水面波纹随呼气从中心向外扩散，越慢越完整。完成三轮后水面归于平静，出现「情绪已平复」。<br/><br/>
+    这一步是整个展览体验的高潮——观众在身体上真实感受到情绪调节机制的作用，而不只是理解概念。
+    <div style="margin-top:8px;padding:7px 10px;background:#E1F5EE;border-radius:6px;border-left:3px solid #1D9E75;font-size:10.5px;color:#085041">
+      说明卡文案：「对着它，慢慢呼气，看水面」
+    </div>
+    <div class="note">全程约40—60秒，体验结束后自动重置，等待下一位观众。</div>
+  </div>
+</div>
+
+</div>
+
+<!-- 快速体验路径 -->
+<div class="card" style="margin-top:4px">
+  <div class="card-title">快速体验路径（5分钟版）</div>
+  <div class="card-body" style="display:flex;align-items:center;flex-wrap:wrap;gap:6px">
+    <div style="font-size:10.5px;padding:5px 12px;border-radius:6px;background:#f7f4ef;border:0.5px solid #d4d0c8;color:#444">看视频（跳至关键场景）</div>
+    <div style="font-size:10px;color:#bbb">→</div>
+    <div style="font-size:10.5px;padding:5px 12px;border-radius:6px;background:#f7f4ef;border:0.5px solid #d4d0c8;color:#444">扫主展板（只看联动关系图）</div>
+    <div style="font-size:10px;color:#bbb">→</div>
+    <div style="font-size:10.5px;padding:5px 12px;border-radius:6px;background:#E1EFFE;border:0.5px solid #3B82F6;color:#0A3D72;font-weight:500">点击手机模拟临界触发</div>
+    <div style="font-size:10px;color:#bbb">→</div>
+    <div style="font-size:10.5px;padding:5px 12px;border-radius:6px;background:#E1F5EE;border:0.5px solid #1D9E75;color:#085041;font-weight:500">呼吸互动装置体验一轮</div>
+    <div style="margin-top:6px;width:100%;font-size:10px;color:#999">适合展览中路过不打算深入了解的观众，核心体验不丢失。</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 1 装置 -->
+<div class="sec-head blue">1 · 作业情境托管装置（实物系列）</div>
+<div class="grid-2">
+
+<div class="card">
+  <div class="card-title">展示物件</div>
+  <div class="card-body">
+    <div class="chips">
+      <span class="chip blue">装置实物原型 3—5件</span>
+      <span class="chip blue">草模→深化模→最终方案演进序列</span>
+    </div>
+    <div style="margin-top:8px">最终方案装置连接电源，运行真实光效与语音程序。其余样品作为造型参考陈列，展示材质探索过程（亚克力 / 木质 / 磨砂）。</div>
+    <div class="note">核心硬件：ESP32 主控 · WS2812B LED 灯环 · 内置扬声器 · 磨砂亚克力漫射片 · 手机倾斜支架</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">光效三状态展示</div>
+  <div class="card-body">
+    <div style="display:flex;gap:0;margin:8px 0 8px;border-radius:6px;overflow:hidden">
+      <div style="flex:1;background:#EAF7F2;border:0.5px solid #1D9E75;padding:9px 8px">
+        <div style="font-size:11px;font-weight:500;color:#04342C">进行中</div>
+        <div style="font-size:10px;color:#085041;margin-top:3px;line-height:1.5">暖白常亮<br/>50%亮度<br/>稳定无动态</div>
+      </div>
+      <div style="flex:1;background:#FAEEDA;border-top:0.5px solid #EF9F27;border-bottom:0.5px solid #EF9F27;padding:9px 8px">
+        <div style="font-size:11px;font-weight:500;color:#412402">暂停中</div>
+        <div style="font-size:10px;color:#633806;margin-top:3px;line-height:1.5">琥珀黄<br/>亮度-30%<br/>5秒/次慢呼吸</div>
+      </div>
+      <div style="flex:1;background:#FAECE7;border:0.5px solid #D85A30;padding:9px 8px">
+        <div style="font-size:11px;font-weight:500;color:#4A1B0C">托管中</div>
+        <div style="font-size:10px;color:#712B13;margin-top:3px;line-height:1.5">浅橙<br/>3秒/次呼吸<br/>语音同步亮暗</div>
+      </div>
+    </div>
+    装置循环切换三种状态，旁边说明卡标注每种状态对应的辅导阶段。建议设置三个按键供观众手动切换，体验感更强。
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">语音安抚内容展示</div>
+  <div class="card-body">
+    装置进入托管中后延迟5秒自动播放，循环切换三段：
+    <div style="margin-top:8px;display:flex;flex-direction:column;gap:5px">
+      <div class="quote-block" style="background:#FAEEDA;border-color:#EF9F27;color:#412402">
+        0—1分钟：「爸妈去一下，你先继续做，做完这道题等一等。」
+      </div>
+      <div class="quote-block" style="background:#FAEEDA;border-color:#EF9F27;color:#412402">
+        1—3分钟：「这道题有点难，不用着急，慢慢想，你可以的。」
+      </div>
+      <div class="quote-block" style="background:#FAEEDA;border-color:#EF9F27;color:#412402">
+        &gt;3分钟：「快做完了，爸妈马上回来，你做得很好。」
+      </div>
+    </div>
+    <div class="note">语音播放时光效微亮，停顿时略暗，节律同步。展览版音量控制在适合展场的水平。</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">观众体验流程</div>
+  <div class="flow">
+    <div class="flow-node">观察装置造型系列</div>
+    <div class="flow-arr">→</div>
+    <div class="flow-node">看三状态说明卡</div>
+    <div class="flow-arr">→</div>
+    <div class="flow-node act">按键切换光效状态</div>
+    <div class="flow-arr">→</div>
+    <div class="flow-node act">听到语音安抚内容</div>
+    <div class="flow-arr">→</div>
+    <div class="flow-node">对照信息架构展板</div>
+  </div>
+</div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- 2 呼吸装置 -->
+<div class="sec-head teal">2 · 呼吸互动装置（TouchDesigner 水面波纹）</div>
+<div class="grid-2">
+
+<div class="card">
+  <div class="card-title">核心概念与意象</div>
+  <div class="card-body">
+    借鉴吹气互动装置的表现形式，将呼吸调整机制可视化为水面波纹。情绪失控 = 水面被搅动，呼吸调节 = 让水面归于平静。观众对着麦克风慢慢呼气，触发波纹从中心向外扩散——呼气越慢越稳，波纹越完整。
+    <div class="chips" style="margin-top:8px">
+      <span class="chip teal">呼气越慢→波纹越完整</span>
+      <span class="chip teal">呼气太急→波纹碎裂</span>
+      <span class="chip teal">三轮完成→水面归于平静</span>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">三阶段视觉状态</div>
+  <div class="card-body">
+    <div style="display:flex;gap:0;border-radius:5px;overflow:hidden;margin-bottom:8px">
+      <div style="flex:4;background:#DCEEFB;border:0.5px solid #90CFF6;padding:7px 8px">
+        <div style="font-size:11px;font-weight:500;color:#0C447C">吸气 4秒</div>
+        <div style="font-size:10px;color:#185FA5;margin-top:3px;line-height:1.5">水面平息<br/>暖橙→冷蓝</div>
+      </div>
+      <div style="flex:2;background:#E6F1FB;border-top:0.5px solid #90CFF6;border-bottom:0.5px solid #90CFF6;padding:7px 8px">
+        <div style="font-size:11px;font-weight:500;color:#0C447C">屏息 2秒</div>
+        <div style="font-size:10px;color:#185FA5;margin-top:3px;line-height:1.5">镜面静止<br/>最亮最纯</div>
+      </div>
+      <div style="flex:6;background:#EEF6FD;border:0.5px solid #90CFF6;padding:7px 8px">
+        <div style="font-size:11px;font-weight:500;color:#0C447C">呼气 6秒</div>
+        <div style="font-size:10px;color:#185FA5;margin-top:3px;line-height:1.5">波纹扩散<br/>深蓝→浅蓝</div>
+      </div>
+    </div>
+    初始水面混乱对应情绪失控状态。三轮完成后出现「情绪已平复」后淡出，等待下一位观众。全程约40—60秒。
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">硬件清单与布置</div>
+  <div class="card-body">
+    <div class="chips"><span class="chip must">必须</span></div>横向显示屏（24寸以上，平放桌面）<br/>
+    <div class="chips" style="margin-top:5px"><span class="chip must">必须</span></div>运行 TD 的笔记本 / 台式机<br/>
+    <div class="chips" style="margin-top:5px"><span class="chip must">必须</span></div>USB 心形指向麦克风（降噪）<br/>
+    <div class="chips" style="margin-top:5px"><span class="chip teal">建议</span></div>超声波传感器 + Arduino（靠近自动唤醒）<br/>
+    <div class="chips" style="margin-top:5px"><span class="chip gray">可选</span></div>小型音箱（低频背景音）
+    <div class="note">屏幕水平放置，观众俯视体验。说明卡只写：「对着它，慢慢呼气，看水面」</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">TD 实现链路</div>
+  <div class="card-body">
+    <div style="font-size:10px;font-family:ui-monospace,monospace;color:#666;line-height:1.9;background:#f7f4ef;padding:8px 10px;border-radius:6px;border:0.5px solid #d4d0c8">
+      Audio In CHOP → Analyze CHOP（提取响度）<br/>
+      Filter CHOP（平滑噪点）<br/>
+      Timer CHOP（4-2-6标准模板曲线）<br/>
+      Math CHOP（实时输入与模板相似度比对）<br/>
+      ↓<br/>
+      Feedback TOP + Blur TOP + Displace TOP<br/>
+      Noise TOP（初始混乱涟漪）<br/>
+      Level TOP（颜色映射：暖橙→冷蓝→冷白）<br/>
+      Window COMP → 横向屏幕全屏输出
+    </div>
+    <div class="note">Feedback + Blur + Displace 原生节点实现水面模拟，在呼气触发点注入高亮点自动产生扩散效果，无需手写物理模拟。</div>
+  </div>
+</div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- 3 手机原型 -->
+<div class="sec-head amber">3 · 手机界面交互原型</div>
+<div class="grid-2">
+
+<div class="card">
+  <div class="card-title">展示物件</div>
+  <div class="card-body">
+    <div class="chips">
+      <span class="chip amber">手机实机×1（固定展示支架）</span>
+      <span class="chip amber">Figma Prototype 运行</span>
+    </div>
+    <div style="margin-top:8px">手机竖置固定在支架上，观众点触操作。覆盖5个核心界面，全流程约60秒可走完。旁边放手机界面清单说明卡（S-01至S-09索引）。</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">原型覆盖界面与交互热区</div>
+  <div class="card-body">
+    <div class="chips">
+      <span class="chip amber">S-03 辅导进行中</span>
+      <span class="chip amber">S-04 停滞检测</span>
+      <span class="chip amber">S-05 话语替代浮层</span>
+      <span class="chip amber">S-06 临界视图</span>
+      <span class="chip amber">S-07 简化锁定视图</span>
+    </div>
+    <div style="margin-top:8px">
+      S-03 → 点击任务卡片 → S-04<br/>
+      S-04 → 点击「×」→ S-03<br/>
+      S-03 → 点击「话语替代」→ S-05<br/>
+      S-05 → 点击「好的」→ S-03<br/>
+      S-03 → 点击「模拟临界」→ S-06<br/>
+      S-06 → 点击任意区域 → S-07（离场）<br/>
+      S-07 → 点击任意区域 → S-03（返回）
+    </div>
+    <div class="note">30秒无操作自动重置回 S-03</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">三端联动模拟方案</div>
+  <div class="card-body">S-03 添加「模拟临界触发」小按钮。观众点击后手机切换 S-06，旁边 Watch 实机同步切换 W-03 画面，装置同步变色，完整演示三端联动切换。</div>
+</div>
+
+<div class="card">
+  <div class="card-title">呼吸引导独立体验入口</div>
+  <div class="card-body">手机端单独设置「体验呼吸引导」入口，供不方便使用 Watch 的观众体验。进入后全屏播放张/缩圈动效，引导完整 4-2-6 呼吸练习，循环3轮后自动结束。</div>
+</div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- 4 手表原型 -->
+<div class="sec-head purple">4 · 手表界面交互原型</div>
+<div class="grid-2">
+
+<div class="card">
+  <div class="card-title">展示物件</div>
+  <div class="card-body">
+    <div class="chips">
+      <span class="chip purple">Apple Watch 实机×1</span>
+      <span class="chip purple">Watch App 原型运行</span>
+      <span class="chip gray">展台说明卡</span>
+    </div>
+    <div style="margin-top:8px">Watch 放置在专用支架上，预先进入演示模式。旁边设置展台按钮，观众可手动切换各状态界面。</div>
+    <div class="note">提前设置演示模式，支持手动按钮触发临界，跳过真实心率等待。</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">6个状态界面演示顺序</div>
+  <div class="card-body">
+    <div style="display:flex;flex-direction:column;gap:5px;margin-top:4px">
+      <div style="display:flex;align-items:center;gap:6px">
+        <div class="flow-node">W-01 未启动</div>
+        <div class="flow-arr">→</div>
+        <div class="flow-node">W-02 监测中（描边圆点）</div>
+      </div>
+      <div style="padding-left:4px;font-size:10px;color:#bbb">↓</div>
+      <div class="flow-node" style="background:#FAECE7;border-color:#D85A30;color:#712B13;display:inline-block">W-03 临界触发（振动+暂停图标）</div>
+      <div style="padding-left:4px;font-size:10px;color:#bbb">↓</div>
+      <div class="flow-node" style="background:#E1EFFE;border-color:#3B82F6;color:#0A3D72;display:inline-block">W-04 呼吸引导（张/缩圈·4-2-6节律）← 重点</div>
+      <div style="padding-left:4px;font-size:10px;color:#bbb">↓</div>
+      <div style="display:flex;align-items:center;gap:6px">
+        <div class="flow-node">W-05 托管中（实心圆点）</div>
+        <div class="flow-arr">→</div>
+        <div class="flow-node">W-06 返回恢复</div>
+      </div>
+    </div>
+    <div class="note">W-04 是重点演示界面，展台按钮标注各状态名称，方便观众自主切换。</div>
+  </div>
+</div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- 5 展板 -->
+<div class="sec-head gray">5 · 展板</div>
+<div class="grid-2">
+
+<div class="card">
+  <div class="card-title">主展板（A0 竖版）</div>
+  <div class="card-body">
+    <div class="chips"><span class="chip gray">区块一 上1/5</span></div>
+    选题背景 · 问题界定 · 研究意义<br/>
+    <div class="chips" style="margin-top:6px"><span class="chip gray">区块二 上2/5</span></div>
+    情绪三阶段框架 · 家长类型二维矩阵<br/>
+    <div class="chips" style="margin-top:6px"><span class="chip gray">区块三 中</span></div>
+    三端产品系统联动关系图<br/>
+    <div class="chips" style="margin-top:6px"><span class="chip gray">区块四 中下·视觉重心</span></div>
+    呼吸机制可视化 · 装置光效状态图（占整板25%）<br/>
+    <div class="chips" style="margin-top:6px"><span class="chip gray">区块五 下1/5</span></div>
+    用户场景故事板 · 测试反馈
+    <div class="note">展板观看距离约80cm · 标题28—36pt · 正文12—14pt · 每区块正文不超过60字</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">信息架构专项展板（A1 横版）</div>
+  <div class="card-body">
+    三端信息架构完整呈现：<br/><br/>
+    左列：手机 App（A—E 模块）<br/>
+    中列：Apple Watch（A-1 至 B-6）<br/>
+    右列：作业情境托管装置（A—G 模块）<br/><br/>
+    三列顶部对齐，颜色区分三端（蓝/橙/绿）。直接复用 ia_phone_v3、ia_watch_v3、ia_device_v2 输出文件打印。
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">呼吸机制专项小卡（A3 横版）</div>
+  <div class="card-body">
+    放置在呼吸互动装置旁边。三列布局：<br/><br/>
+    左列：「为什么用呼吸？」——理论说明50字内（Porges, 2011）<br/>
+    中列：4-2-6 节律可视化（时间比例色块，见下方）<br/>
+    右列：「现在试一下」——指向旁边水面波纹装置
+    <div class="note">配色与产品一致：米白底 + 蓝色系 + 圆角</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">展板必须包含的视觉元素</div>
+  <div class="card-body">
+    <div class="chips"><span class="chip must">必须</span></div>三端联动关系连线图<br/>
+    <div class="chips" style="margin-top:5px"><span class="chip must">必须</span></div>呼吸节律时间轴（4+2+6秒标注）<br/>
+    <div class="chips" style="margin-top:5px"><span class="chip must">必须</span></div>手表表盘状态对比图（W-02→W-03→W-04）<br/>
+    <div class="chips" style="margin-top:5px"><span class="chip must">必须</span></div>装置光效三状态示意图<br/>
+    <div class="chips" style="margin-top:5px"><span class="chip must">必须</span></div>水面波纹装置三阶段示意图<br/>
+    <div class="chips" style="margin-top:5px"><span class="chip gray">可选</span></div>用户访谈关键引语 · 测试数据
+  </div>
+</div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- 6 视频 -->
+<div class="sec-head coral">6 · 产品使用视频</div>
+<div class="grid-2">
+
+<div class="card">
+  <div class="card-title">视频内容结构（建议 3—5 分钟）</div>
+  <div class="card-body">
+    <div style="display:flex;flex-direction:column;gap:5px;margin-top:4px">
+      <div class="quote-block" style="background:#f7f4ef;border-color:#d4d0c8;color:#444">
+        00:00—00:30 · 场景引入：家长辅导儿童作业，情绪逐渐升级
+      </div>
+      <div class="quote-block" style="background:#DCEEFB;border-color:#90CFF6;color:#0C447C">
+        00:30—01:30 · 手机界面：作业总览→辅导推进→停滞提示→话语替代
+      </div>
+      <div class="quote-block" style="background:#FAECE7;border-color:#D85A30;color:#712B13">
+        01:30—02:30 · 临界触发：Watch 振动→手机临界视图→装置变色→三端联动
+      </div>
+      <div class="quote-block" style="background:#EEF6FD;border-color:#90CFF6;color:#0C447C">
+        02:30—03:30 · 家长离场：Watch 呼吸引导→装置语音安抚→儿童等待
+      </div>
+      <div class="quote-block" style="background:#E1F5EE;border-color:#1D9E75;color:#085041">
+        03:30—04:00 · 家长返回：三端恢复→辅导继续→结束小结
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">展场播放方案</div>
+  <div class="card-body">
+    <div class="chips">
+      <span class="chip coral">独立屏幕循环播放</span>
+      <span class="chip coral">竖屏（手机视角为主）</span>
+      <span class="chip coral">全程加字幕</span>
+    </div>
+    <div style="margin-top:8px">放置在展位入口或展板旁，作为观众了解场景的第一入口。加字幕确保展场嘈杂时仍可理解。</div>
+    <div class="chips" style="margin-top:8px">
+      <span class="chip gray">屏幕 13—15寸</span>
+      <span class="chip gray">支架竖置</span>
+      <span class="chip gray">循环播放</span>
+    </div>
+    <div class="note">也可分割为3个30秒短视频（装置演示 / 手机演示 / 呼吸引导演示），分别放在对应展品旁边的小屏上循环播放。</div>
+  </div>
+</div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- 节律可视化 -->
+<p class="section-label">4-2-6 呼吸节律可视化（供展板参考）</p>
+<div style="background:#fff;border:0.5px solid #d4d0c8;border-radius:10px;padding:20px 24px">
+  <div style="display:flex;align-items:flex-end;gap:0;height:80px;margin-bottom:12px">
+    <div style="flex:4;background:#DCEEFB;border:0.5px solid #90CFF6;border-radius:4px 0 0 4px;height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px">
+      <span style="font-size:11px;font-weight:500;color:#0C447C">吸气</span>
+      <span style="font-size:10px;color:#185FA5">4 秒</span>
+    </div>
+    <div style="flex:2;background:#E6F1FB;border-top:0.5px solid #90CFF6;border-bottom:0.5px solid #90CFF6;height:66%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px">
+      <span style="font-size:11px;font-weight:500;color:#0C447C">屏息</span>
+      <span style="font-size:10px;color:#185FA5">2 秒</span>
+    </div>
+    <div style="flex:6;background:#EEF6FD;border:0.5px solid #90CFF6;border-radius:0 4px 4px 0;height:50%;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:3px">
+      <span style="font-size:11px;font-weight:500;color:#0C447C">呼气</span>
+      <span style="font-size:10px;color:#185FA5">6 秒</span>
+    </div>
+  </div>
+  <div style="display:flex;gap:0;border-top:0.5px solid #e8e4dc;padding-top:8px">
+    <div style="flex:4;font-size:10px;color:#999;text-align:center">延长呼气<br/>激活副交感神经</div>
+    <div style="flex:2;font-size:10px;color:#999;text-align:center">保持<br/>意识聚焦</div>
+    <div style="flex:6;font-size:10px;color:#999;text-align:center">慢呼气降低心率<br/>恢复情绪平稳</div>
+  </div>
+  <div style="margin-top:12px;font-size:10.5px;color:#999;line-height:1.7">
+    一轮 12秒 · 持续约3分钟（约15轮）· 理论依据：Porges (2011) 多迷走神经理论，延长呼气时段显著激活副交感神经制动功能
+  </div>
+</div>
+</div>
+
+<div class="page" id="page1">
+<p class="page-title">作业情境托管装置</p>
+<p class="page-sub">实物原型系列 · 光效语音联动演示</p>
+<div class="sub-tabs">
+  <div class="sub-tab active" onclick="switchSub(1,0)">展览方案</div>
+  <div class="sub-tab" onclick="switchSub(1,1)">产品结构</div>
+</div>
+<div class="sub-panel active" id="p1s0">
+<div class="sec-head blue">展示物件 · 光效 · 语音</div>
+<div class="grid-2">
+<div class="card">
+  <div class="card-title">展示物件</div>
+  <div class="card-body">
+    <div class="chips"><span class="chip blue">装置实物原型 3—5件</span><span class="chip blue">草模→深化模→最终方案演进序列</span></div>
+    <div style="margin-top:8px">最终方案装置连接电源，运行真实光效与语音程序。其余样品作为造型参考陈列，展示材质探索过程。</div>
+    <div class="note">核心硬件：ESP32 · WS2812B LED 灯环 · 内置扬声器 · 磨砂亚克力漫射片</div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-title">光效三状态</div>
+  <div class="card-body">
+    <div style="display:flex;gap:0;margin:8px 0;border-radius:6px;overflow:hidden">
+      <div style="flex:1;background:#EAF7F2;border:0.5px solid #1D9E75;padding:10px 8px"><div style="font-size:11px;font-weight:500;color:#04342C">进行中</div><div style="font-size:10px;color:#085041;margin-top:3px;line-height:1.5">暖白常亮<br/>50%亮度<br/>稳定无动态</div></div>
+      <div style="flex:1;background:#FAEEDA;border-top:0.5px solid #EF9F27;border-bottom:0.5px solid #EF9F27;padding:10px 8px"><div style="font-size:11px;font-weight:500;color:#412402">暂停中</div><div style="font-size:10px;color:#633806;margin-top:3px;line-height:1.5">琥珀黄<br/>亮度-30%<br/>5秒/次慢呼吸</div></div>
+      <div style="flex:1;background:#FAECE7;border:0.5px solid #D85A30;padding:10px 8px"><div style="font-size:11px;font-weight:500;color:#4A1B0C">托管中</div><div style="font-size:10px;color:#712B13;margin-top:3px;line-height:1.5">浅橙<br/>3秒/次呼吸<br/>语音同步亮暗</div></div>
+    </div>
+    建议设置三个按键供观众手动切换状态。
+  </div>
+</div>
+<div class="card">
+  <div class="card-title">语音安抚三阶段</div>
+  <div class="card-body">
+    <div style="display:flex;flex-direction:column;gap:5px;margin-top:4px">
+      <div style="padding:6px 10px;background:#FAEEDA;border-radius:5px;border-left:3px solid #EF9F27;font-size:10.5px;color:#412402">0—1分钟：「爸妈去一下，你先继续做，做完这道题等一等。」</div>
+      <div style="padding:6px 10px;background:#FAEEDA;border-radius:5px;border-left:3px solid #EF9F27;font-size:10.5px;color:#412402">1—3分钟：「这道题有点难，不用着急，慢慢想，你可以的。」</div>
+      <div style="padding:6px 10px;background:#FAEEDA;border-radius:5px;border-left:3px solid #EF9F27;font-size:10.5px;color:#412402">&gt;3分钟：「快做完了，爸妈马上回来，你做得很好。」</div>
+    </div>
+    <div class="note">语音播放时光效微亮，停顿时略暗，节律同步。</div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-title">观众体验流程</div>
+  <div class="card-body">
+    <div class="flow">
+      <div class="flow-node">观察装置造型</div><div class="flow-arr">→</div>
+      <div class="flow-node">看三状态说明卡</div><div class="flow-arr">→</div>
+      <div class="flow-node act">按键切换光效</div><div class="flow-arr">→</div>
+      <div class="flow-node act">听语音安抚</div><div class="flow-arr">→</div>
+      <div class="flow-node">对照信息架构展板</div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div class="sub-panel" id="p1s1">
+
+<div class="sec-head blue">硬件组成</div>
+<div class="grid-3" style="margin-bottom:20px">
+
+  <div class="card">
+    <div class="card-title">主控模块</div>
+    <div class="card-body">
+      <div style="font-size:12px;font-weight:500;color:#1a1a1a;margin-bottom:6px">ESP32 微控制器</div>
+      <div class="chips">
+        <span class="chip blue">双核 240MHz</span>
+        <span class="chip blue">Wi-Fi + BLE 5.0</span>
+        <span class="chip blue">内置 ADC/DAC</span>
+      </div>
+      <div style="margin-top:8px;font-size:10.5px;color:#666;line-height:1.7">
+        负责协调所有模块运作，通过 BLE 与手机 App 保持低功耗连接，接收三端状态指令后驱动光效与语音同步切换。
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">光效模块</div>
+    <div class="card-body">
+      <div style="font-size:12px;font-weight:500;color:#1a1a1a;margin-bottom:6px">WS2812B LED 灯环</div>
+      <div class="chips">
+        <span class="chip amber">单线串行协议</span>
+        <span class="chip amber">全彩 RGB</span>
+        <span class="chip amber">可寻址独立控制</span>
+      </div>
+      <div style="margin-top:8px;font-size:10.5px;color:#666;line-height:1.7">
+        环形排列内置于装置底座，透过磨砂亚克力漫射片形成均匀柔和的光晕效果。支持三状态颜色与亮度程序化切换。
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">语音模块</div>
+    <div class="card-body">
+      <div style="font-size:12px;font-weight:500;color:#1a1a1a;margin-bottom:6px">DFPlayer Mini + 扬声器</div>
+      <div class="chips">
+        <span class="chip teal">SD 卡存储音频</span>
+        <span class="chip teal">UART 串口控制</span>
+        <span class="chip teal">2W 功率扬声器</span>
+      </div>
+      <div style="margin-top:8px;font-size:10.5px;color:#666;line-height:1.7">
+        预存 TTS 生成的三段语音安抚内容，由 ESP32 在家长离场后延迟5秒触发，播放时与光效节律同步。
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">漫射与外壳</div>
+    <div class="card-body">
+      <div style="font-size:12px;font-weight:500;color:#1a1a1a;margin-bottom:6px">磨砂亚克力 + 3D打印壳体</div>
+      <div class="chips">
+        <span class="chip gray">磨砂漫射片</span>
+        <span class="chip gray">圆柱造型</span>
+        <span class="chip gray">内嵌走线</span>
+      </div>
+      <div style="margin-top:8px;font-size:10.5px;color:#666;line-height:1.7">
+        磨砂亚克力作为灯环漫射层，使光效均匀柔和无硬边。壳体通过 3D 打印定制，内部走线整洁，外部无裸露接口。
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">传感模块</div>
+    <div class="card-body">
+      <div style="font-size:12px;font-weight:500;color:#1a1a1a;margin-bottom:6px">HC-SR04 超声波传感器</div>
+      <div class="chips">
+        <span class="chip gray">检测距离 2—400cm</span>
+        <span class="chip gray">自动唤醒</span>
+      </div>
+      <div style="margin-top:8px;font-size:10.5px;color:#666;line-height:1.7">
+        展览场景下用于感应观众靠近，自动唤醒装置进入演示模式。实际家用场景中可由手机 App 替代。
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">供电</div>
+    <div class="card-body">
+      <div style="font-size:12px;font-weight:500;color:#1a1a1a;margin-bottom:6px">USB-C 5V 供电</div>
+      <div class="chips">
+        <span class="chip gray">标准 5V/2A 适配器</span>
+        <span class="chip gray">内置稳压模块</span>
+      </div>
+      <div style="margin-top:8px;font-size:10.5px;color:#666;line-height:1.7">
+        USB-C 接口统一供电，内置稳压芯片分别为 ESP32、LED 灯环、DFPlayer 供电，避免电流互相干扰。
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="sec-head teal">软件框架</div>
+
+<div class="grid-2" style="margin-bottom:16px">
+  <div class="card">
+    <div class="card-title">状态机逻辑（ESP32 固件）</div>
+    <div class="card-body">
+      <div style="font-size:10.5px;color:#666;line-height:1.9">
+        装置内部维护三个核心状态，收到手机指令后立即切换：
+      </div>
+      <div style="margin-top:8px;display:flex;flex-direction:column;gap:5px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:8px;height:8px;border-radius:50%;background:#1D9E75;flex-shrink:0"></div>
+          <div style="font-size:10.5px;color:#666"><span style="font-weight:500;color:#085041">STATE_ACTIVE</span> — 辅导进行中，暖白常亮</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:8px;height:8px;border-radius:50%;background:#EF9F27;flex-shrink:0"></div>
+          <div style="font-size:10.5px;color:#666"><span style="font-weight:500;color:#633806">STATE_PAUSE</span> — 临界触发，琥珀黄慢呼吸</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <div style="width:8px;height:8px;border-radius:50%;background:#D85A30;flex-shrink:0"></div>
+          <div style="font-size:10.5px;color:#666"><span style="font-weight:500;color:#712B13">STATE_託管</span> — 家长离场，浅橙呼吸+延迟触发语音</div>
+        </div>
+      </div>
+      <div class="note">状态切换延迟 &lt;50ms，光效过渡采用线性插值避免闪烁。</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">BLE 通信协议</div>
+    <div class="card-body">
+      <div style="font-size:10.5px;color:#666;line-height:1.7;margin-bottom:8px">
+        手机 App 通过 BLE GATT 服务向装置发送状态指令，单向下发，装置不回传数据：
+      </div>
+      <div style="font-size:10px;font-family:ui-monospace,monospace;background:#f7f4ef;padding:10px 12px;border-radius:6px;border:0.5px solid #d4d0c8;color:#444;line-height:1.9">
+        Service UUID: 0xFFE0<br/>
+        Characteristic: 0xFFE1<br/>
+        CMD_ACTIVE  → 0x01<br/>
+        CMD_PAUSE   → 0x02<br/>
+        CMD_CUSTODY → 0x03<br/>
+        CMD_RESET   → 0x00
+      </div>
+      <div class="note">连接范围约10m，低功耗模式下待机电流 &lt;5mA。</div>
+    </div>
+  </div>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <div class="card-title">光效控制逻辑</div>
+    <div class="card-body">
+      <div style="display:flex;flex-direction:column;gap:6px;margin-top:2px">
+        <div style="padding:7px 10px;background:#EAF7F2;border-radius:6px;border-left:3px solid #1D9E75">
+          <div style="font-size:10.5px;font-weight:500;color:#04342C">STATE_ACTIVE · 暖白常亮</div>
+          <div style="font-size:10px;color:#085041;margin-top:2px">色温 3000K · 亮度50% · 无动态</div>
+        </div>
+        <div style="padding:7px 10px;background:#FAEEDA;border-radius:6px;border-left:3px solid #EF9F27">
+          <div style="font-size:10.5px;font-weight:500;color:#412402">STATE_PAUSE · 琥珀黄慢呼吸</div>
+          <div style="font-size:10px;color:#633806;margin-top:2px">亮度 30—60% 线性循环 · 5秒/轮</div>
+        </div>
+        <div style="padding:7px 10px;background:#FAECE7;border-radius:6px;border-left:3px solid #D85A30">
+          <div style="font-size:10.5px;font-weight:500;color:#4A1B0C">STATE_CUSTODY · 浅橙呼吸</div>
+          <div style="font-size:10px;color:#712B13;margin-top:2px">亮度随语音幅度同步 · 3秒/轮</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">语音触发时序</div>
+    <div class="card-body">
+      <div style="font-size:10.5px;color:#666;margin-bottom:8px;line-height:1.7">进入 STATE_CUSTODY 后按时序触发：</div>
+      <div style="display:flex;flex-direction:column;gap:5px">
+        <div style="display:flex;gap:8px;align-items:flex-start">
+          <div style="font-size:10px;padding:2px 7px;background:#f0ece4;border-radius:4px;color:#666;flex-shrink:0;font-family:monospace">+5s</div>
+          <div style="font-size:10.5px;color:#666;line-height:1.5">播放第一段：告知儿童家长暂离</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:flex-start">
+          <div style="font-size:10px;padding:2px 7px;background:#f0ece4;border-radius:4px;color:#666;flex-shrink:0;font-family:monospace">+60s</div>
+          <div style="font-size:10.5px;color:#666;line-height:1.5">播放第二段：鼓励儿童继续作业</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:flex-start">
+          <div style="font-size:10px;padding:2px 7px;background:#f0ece4;border-radius:4px;color:#666;flex-shrink:0;font-family:monospace">+180s</div>
+          <div style="font-size:10.5px;color:#666;line-height:1.5">播放第三段：正向肯定，告知即将返回</div>
+        </div>
+        <div style="display:flex;gap:8px;align-items:flex-start">
+          <div style="font-size:10px;padding:2px 7px;background:#E1F5EE;border-radius:4px;color:#085041;flex-shrink:0;font-family:monospace">复位</div>
+          <div style="font-size:10.5px;color:#666;line-height:1.5">接收 CMD_ACTIVE/CMD_RESET，立即停止语音，切换光效</div>
+        </div>
+      </div>
+      <div class="note">语音播放时光效亮度随音频幅度微动，停顿时归位基准亮度。</div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+
+<div class="page" id="page2">
+<p class="page-title">呼吸互动装置</p>
+<p class="page-sub">水面波纹意象 · 麦克风感应呼气 · TouchDesigner 实时渲染 · 桌面横屏展示</p>
+<div class="sub-tabs">
+  <div class="sub-tab active" onclick="switchSub(2,0)">完整方案</div>
+  <div class="sub-tab" onclick="switchSub(2,1)">视觉叙事</div>
+  <div class="sub-tab" onclick="switchSub(2,2)">TD 实现链路</div>
+</div>
+<div class="sub-panel active" id="p2s0">
+<p class="page-title">呼吸调整机制 · 互动展览装置方案</p>
+<p class="page-sub">水面波纹意象 · 麦克风感应呼气 · TouchDesigner 实时渲染 · 桌面横屏展示</p>
+
+<!-- ══ 一、核心概念 ══ -->
+<div class="sec-head blue">一 · 核心概念</div>
+<div class="grid-2">
+
+<div class="card">
+  <div class="card-title">设计意图</div>
+  <div class="card-body">
+    将手表端的呼吸引导机制从屏幕中解放出来，放大成一个可以被多人感知、主动参与的展览装置。观众通过对着麦克风呼气，实时控制水面波纹的生成与扩散，在「让水面归于平静」的过程中，完成一次真实的情绪调节体验。<br/><br/>
+    装置不教观众「如何呼吸」，而是用视觉反馈让他们自发地慢下来——这和产品本身的最小干预原则一致。
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">核心隐喻</div>
+  <div class="card-body">
+    情绪失控 = 水面被搅动，杂乱涟漪相互干扰<br/>
+    呼吸调节 = 让水面重新归于平静<br/>
+    一次完整呼气 = 一滴水落下，一圈干净的波纹向外扩散<br/><br/>
+    <span style="color:#999;font-size:10.5px">波纹只在呼气阶段出现，且呼气越慢越完整——观众为了「看完这圈波纹」，会主动放慢呼气速度，过程中完成真实的呼吸调节。</span>
+  </div>
+</div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ 二、视觉叙事 ══ -->
+<div class="sec-head teal">二 · 视觉叙事与呼吸阶段对应</div>
+
+<!-- 状态零 -->
+<p class="section-label" style="margin-top:4px">初始状态 · 观众走近前</p>
+<div class="card" style="margin-bottom:12px">
+  <div class="card-body">水面呈现混乱状态——多圈杂乱涟漪相互叠加干扰，颜色偏暖橙，像未平息的情绪。感应到有人靠近后，水面开始缓缓减弱混乱，等待第一次呼气。</div>
+</div>
+
+<!-- 三阶段 -->
+<p class="section-label">三阶段视觉状态</p>
+<div class="phase-row">
+
+  <div class="phase-block" style="flex:4;background:#DCEEFB;border-radius:8px 0 0 8px;border:0.5px solid #90CFF6">
+    <div class="ph-name" style="color:#0C447C">吸气</div>
+    <div class="ph-sec" style="color:#185FA5">4 秒</div>
+    <div class="ph-desc" style="color:#185FA5">水面慢慢平息<br/>杂乱涟漪减弱<br/>颜色暖橙→冷蓝<br/>像把混乱往里收</div>
+  </div>
+
+  <div class="phase-block" style="flex:2;background:#E6F1FB;border-top:0.5px solid #90CFF6;border-bottom:0.5px solid #90CFF6">
+    <div class="ph-name" style="color:#0C447C">屏息</div>
+    <div class="ph-sec" style="color:#185FA5">2 秒</div>
+    <div class="ph-desc" style="color:#185FA5">水面完全静止<br/>镜面感<br/>颜色最亮最纯<br/>「悬停」的一刻</div>
+  </div>
+
+  <div class="phase-block" style="flex:6;background:#EEF6FD;border-radius:0 8px 8px 0;border:0.5px solid #90CFF6">
+    <div class="ph-name" style="color:#0C447C">呼气</div>
+    <div class="ph-sec" style="color:#185FA5">6 秒</div>
+    <div class="ph-desc" style="color:#185FA5">一滴水落下<br/>完整同心波纹向外扩散<br/>颜色深蓝→浅蓝<br/>越慢波纹越完整</div>
+  </div>
+
+</div>
+
+<div class="grid-3" style="margin-top:10px">
+
+<div class="vis-card">
+  <div class="vis-preview" style="background:#1A1A2A">
+    <svg width="160" height="90" viewBox="0 0 160 90">
+      <ellipse cx="80" cy="45" rx="70" ry="35" fill="none" stroke="#2A3A5A" stroke-width="0.8" opacity="0.6"/>
+      <ellipse cx="80" cy="45" rx="52" ry="26" fill="none" stroke="#E08040" stroke-width="0.6" opacity="0.7"/>
+      <ellipse cx="80" cy="45" rx="36" ry="18" fill="none" stroke="#D07030" stroke-width="0.5" opacity="0.8"/>
+      <ellipse cx="66" cy="38" rx="22" ry="11" fill="none" stroke="#C86030" stroke-width="0.5" opacity="0.6"/>
+      <ellipse cx="94" cy="52" rx="18" ry="9" fill="none" stroke="#E09050" stroke-width="0.5" opacity="0.5"/>
+      <ellipse cx="75" cy="55" rx="14" ry="7" fill="none" stroke="#D07030" stroke-width="0.4" opacity="0.5"/>
+    </svg>
+  </div>
+  <div class="vis-info">
+    <div class="vis-title">初始 · 情绪混乱</div>
+    <div class="vis-desc">多圈杂乱涟漪叠加，暖橙色调，中心无序</div>
+  </div>
+</div>
+
+<div class="vis-card">
+  <div class="vis-preview" style="background:#0A1828">
+    <svg width="160" height="90" viewBox="0 0 160 90">
+      <ellipse cx="80" cy="45" rx="68" ry="34" fill="none" stroke="#5EB6F4" stroke-width="1" opacity="0.5"/>
+      <ellipse cx="80" cy="45" rx="50" ry="25" fill="none" stroke="#90CFF6" stroke-width="1.2" opacity="0.7"/>
+      <ellipse cx="80" cy="45" rx="32" ry="16" fill="none" stroke="#BCE1FD" stroke-width="1" opacity="0.8"/>
+      <circle cx="80" cy="45" r="4" fill="#BCE1FD" opacity="0.9"/>
+    </svg>
+  </div>
+  <div class="vis-info">
+    <div class="vis-title">屏息 · 镜面静止</div>
+    <div class="vis-desc">水面完全静止，冷蓝色调，同心圆悬停</div>
+  </div>
+</div>
+
+<div class="vis-card">
+  <div class="vis-preview" style="background:#0A1828">
+    <svg width="160" height="90" viewBox="0 0 160 90">
+      <circle cx="80" cy="45" r="3" fill="#BCE1FD" opacity="0.95"/>
+      <circle cx="80" cy="45" r="16" fill="none" stroke="#90CFF6" stroke-width="1.2" opacity="0.85"/>
+      <circle cx="80" cy="45" r="30" fill="none" stroke="#5EB6F4" stroke-width="1" opacity="0.65"/>
+      <circle cx="80" cy="45" r="46" fill="none" stroke="#378ADD" stroke-width="0.8" opacity="0.45"/>
+      <circle cx="80" cy="45" r="62" fill="none" stroke="#185FA5" stroke-width="0.6" opacity="0.25"/>
+    </svg>
+  </div>
+  <div class="vis-info">
+    <div class="vis-title">呼气 · 波纹扩散</div>
+    <div class="vis-desc">完整同心波纹从中心缓慢向外扩散，越慢越完整</div>
+  </div>
+</div>
+
+</div>
+
+<!-- 结束状态 -->
+<div class="card" style="margin-top:10px">
+  <div class="card-title">三轮完成后 · 结束状态</div>
+  <div class="card-body">水面完全静止，颜色渐变为冷白，停留数秒后出现一行字「情绪已平复」，缓慢淡出，等待下一位观众。整个体验约 40 秒（4+2+6）×3轮。</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ 三、交互反馈机制 ══ -->
+<div class="sec-head amber">三 · 交互反馈机制</div>
+<div class="grid-2">
+
+<div class="card">
+  <div class="card-title">呼气质量决定波纹质量</div>
+  <div class="card-body">
+    装置同时运行两条数据线：<br/>
+    · 麦克风实时采集观众呼气响度曲线<br/>
+    · Timer CHOP 生成4-2-6标准节律模板<br/><br/>
+    两者做相似度比对，映射到波纹参数：<br/>
+    <div class="chips" style="margin-top:6px">
+      <span class="chip teal">呼气慢且稳 → 波纹完整同心圆</span>
+      <span class="chip coral">呼气太急 → 波纹碎裂不规则</span>
+      <span class="chip amber">呼气太短 → 波纹扩散到一半消失</span>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">视觉引导节奏</div>
+  <div class="card-body">
+    屏幕边缘显示极细的进度弧线，对应当前所在阶段（吸气/屏息/呼气），不打扰主视觉但提供节律参考。<br/><br/>
+    旁边小卡片只写一句话：<br/>
+    <div style="margin-top:8px;padding:8px 12px;background:#f0ece4;border-radius:6px;font-size:11px;color:#444;border-left:3px solid #d4d0c8">
+      「对着它，慢慢呼气，看水面」
+    </div>
+    <div class="note">不写节律数字，不写说明，让观众自己发现规律。</div>
+  </div>
+</div>
+
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ 四、TD实现 ══ -->
+<div class="sec-head gray">四 · TouchDesigner 实现链路</div>
+
+<div class="grid-2">
+<div class="card">
+  <div class="card-title">数据采集层</div>
+  <div class="node-chain">
+    <div class="node-row">
+      <div class="td-node chop">Audio In CHOP</div>
+      <div class="td-arr">→</div>
+      <div class="td-note">麦克风实时输入</div>
+    </div>
+    <div class="node-row">
+      <div class="td-node chop">Analyze CHOP</div>
+      <div class="td-arr">→</div>
+      <div class="td-note">提取响度 + 过零率（判断吸/呼）</div>
+    </div>
+    <div class="node-row">
+      <div class="td-node chop">Filter CHOP</div>
+      <div class="td-arr">→</div>
+      <div class="td-note">平滑噪点，避免误触发</div>
+    </div>
+    <div class="node-row">
+      <div class="td-node chop">Timer CHOP</div>
+      <div class="td-arr">→</div>
+      <div class="td-note">生成4-2-6标准节律模板曲线</div>
+    </div>
+    <div class="node-row">
+      <div class="td-node chop">Math CHOP</div>
+      <div class="td-arr">→</div>
+      <div class="td-note">实时输入与模板相似度比对</div>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">视觉渲染层</div>
+  <div class="node-chain">
+    <div class="node-row">
+      <div class="td-node top">Feedback TOP</div>
+      <div class="td-arr">→</div>
+      <div class="td-note">水面基底，保留上一帧</div>
+    </div>
+    <div class="node-row">
+      <div class="td-node top">Blur TOP</div>
+      <div class="td-arr">+</div>
+      <div class="td-node top">Displace TOP</div>
+      <div class="td-arr">→</div>
+      <div class="td-note">波纹扩散物理模拟</div>
+    </div>
+    <div class="node-row">
+      <div class="td-node top">Level TOP</div>
+      <div class="td-arr">→</div>
+      <div class="td-note">颜色映射：暖橙→冷蓝→冷白</div>
+    </div>
+    <div class="node-row">
+      <div class="td-node top">Noise TOP</div>
+      <div class="td-arr">→</div>
+      <div class="td-note">初始混乱涟漪生成</div>
+    </div>
+    <div class="node-row">
+      <div class="td-node out">Window COMP</div>
+      <div class="td-arr">→</div>
+      <div class="td-note">全屏输出到横向屏幕</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="card" style="margin-top:10px">
+  <div class="card-title">水面模拟核心逻辑</div>
+  <div class="card-body">
+    Feedback TOP 每帧把上一帧画面稍微扩散（Blur），再加轻微位移（Displace），形成自然衰减的水波。在麦克风检测到呼气触发点时，向 Feedback 注入一个高亮点，自动产生向外扩散的波纹效果——不需要手写物理模拟，TD 原生节点即可实现。
+    <div class="chips" style="margin-top:6px">
+      <span class="chip blue">Blur 半径 → 控制波纹扩散速度</span>
+      <span class="chip blue">注入点亮度 → 控制波纹强度</span>
+      <span class="chip blue">Displace 强度 → 控制水面混乱程度</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ══ 五、最终形态 ══ -->
+<div class="sec-head coral">五 · 展览现场最终形态</div>
+<div class="grid-2">
+
+<div class="card">
+  <div class="card-title">装置物理形态</div>
+  <div class="card-body">
+    <div class="chips">
+      <span class="chip gray">横向屏幕 · 平铺桌面</span>
+      <span class="chip gray">尺寸建议 24—32寸</span>
+      <span class="chip gray">观众俯视体验</span>
+    </div>
+    <div style="margin-top:8px">屏幕水平放置在展台上，观众俯身向下看，像真的在看一盆水。麦克风开口嵌在展台侧面，高度对准站立观众的口部。桌面两侧放说明卡和与其他展品的关系说明。</div>
+    <div class="note">俯视角度比竖屏更沉浸，水面隐喻更直觉，且多人可以同时围观，增加展场吸引力。</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">硬件清单</div>
+  <div class="card-body">
+    <div class="chips">
+      <span class="chip must">必须</span>
+    </div>横向显示屏（24寸以上）<br/>
+    <div class="chips" style="margin-top:5px">
+      <span class="chip must">必须</span>
+    </div>运行 TD 的笔记本/台式机<br/>
+    <div class="chips" style="margin-top:5px">
+      <span class="chip must">必须</span>
+    </div>USB 麦克风（心形指向，降噪）<br/>
+    <div class="chips" style="margin-top:5px">
+      <span class="chip teal">建议</span>
+    </div>超声波距离传感器（检测靠近，自动唤醒）<br/>
+    <div class="chips" style="margin-top:5px">
+      <span class="chip teal">建议</span>
+    </div>Arduino Uno（驱动距离传感器）<br/>
+    <div class="chips" style="margin-top:5px">
+      <span class="chip gray">可选</span>
+    </div>小型音箱（低频背景音，辅助沉浸感）
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">与三端系统的关联说明</div>
+  <div class="card-body">
+    这个装置是手表端 W-04「呼吸引导」界面的放大版——手表上的张/缩圈动画在这里变成了可以被整个展场感知的水面波纹。两者共享同一套4-2-6节律逻辑，但装置让观众从「被引导」变成「主动体验」，完成从理解概念到身体感知的转化。
+    <div class="chips" style="margin-top:6px">
+      <span class="chip blue">手表 W-04 → 个人私密体验</span>
+      <span class="chip teal">装置 → 公共展览体验</span>
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">体验流程（约40—60秒）</div>
+  <div class="card-body">
+    <div class="flow">
+      <div class="flow-node">走近装置</div>
+      <div class="flow-arr">→</div>
+      <div class="flow-node">水面自动唤醒</div>
+      <div class="flow-arr">→</div>
+      <div class="flow-node">看到说明卡</div>
+      <div class="flow-arr">→</div>
+      <div class="flow-node active">对着麦克风慢呼气</div>
+      <div class="flow-arr">→</div>
+      <div class="flow-node active">波纹随呼气出现</div>
+      <div class="flow-arr">→</div>
+      <div class="flow-node active">跟随节律3轮</div>
+      <div class="flow-arr">→</div>
+      <div class="flow-node">水面归于平静</div>
+      <div class="flow-arr">→</div>
+      <div class="flow-node">「情绪已平复」</div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
+<div class="sub-panel" id="p2s1">
+<div class="sec-head teal">三阶段视觉状态详解</div>
+<div class="grid-3">
+<div style="background:#1A1A2A;border-radius:10px;overflow:hidden">
+  <svg width="100%" viewBox="0 0 180 110" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="90" cy="55" rx="78" ry="38" fill="none" stroke="#E08040" stroke-width="0.8" opacity="0.6"/>
+    <ellipse cx="90" cy="55" rx="58" ry="28" fill="none" stroke="#D07030" stroke-width="0.6" opacity="0.7"/>
+    <ellipse cx="90" cy="55" rx="38" ry="18" fill="none" stroke="#C06020" stroke-width="0.5" opacity="0.8"/>
+    <ellipse cx="74" cy="46" rx="24" ry="12" fill="none" stroke="#E09050" stroke-width="0.5" opacity="0.6"/>
+    <ellipse cx="106" cy="64" rx="20" ry="10" fill="none" stroke="#D07030" stroke-width="0.4" opacity="0.5"/>
+  </svg>
+  <div style="padding:10px 12px;background:#1A1A2A">
+    <div style="font-size:11px;font-weight:500;color:#E08040">初始·情绪混乱</div>
+    <div style="font-size:10px;color:#7A8A9A;margin-top:3px;line-height:1.5">多圈杂乱涟漪叠加<br/>暖橙色调，中心无序</div>
+  </div>
+</div>
+<div style="background:#0A1828;border-radius:10px;overflow:hidden">
+  <svg width="100%" viewBox="0 0 180 110" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="90" cy="55" r="4" fill="#BCE1FD" opacity="0.95"/>
+    <circle cx="90" cy="55" r="20" fill="none" stroke="#90CFF6" stroke-width="1.2" opacity="0.85"/>
+    <circle cx="90" cy="55" r="38" fill="none" stroke="#5EB6F4" stroke-width="1" opacity="0.65"/>
+    <circle cx="90" cy="55" r="56" fill="none" stroke="#378ADD" stroke-width="0.8" opacity="0.45"/>
+  </svg>
+  <div style="padding:10px 12px;background:#0A1828">
+    <div style="font-size:11px;font-weight:500;color:#90CFF6">呼气·波纹扩散</div>
+    <div style="font-size:10px;color:#5A7A9A;margin-top:3px;line-height:1.5">同心波纹从中心扩散<br/>越慢越完整</div>
+  </div>
+</div>
+<div style="background:#0A1828;border-radius:10px;overflow:hidden">
+  <svg width="100%" viewBox="0 0 180 110" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="90" cy="55" r="3" fill="#BCE1FD" opacity="0.8"/>
+    <text x="90" y="85" text-anchor="middle" font-size="11" fill="#5EB6F4" font-family="PingFang SC,sans-serif">情绪已平复</text>
+  </svg>
+  <div style="padding:10px 12px;background:#0A1828">
+    <div style="font-size:11px;font-weight:500;color:#5EB6F4">完成·水面静止</div>
+    <div style="font-size:10px;color:#5A7A9A;margin-top:3px;line-height:1.5">三轮结束，冷白静止<br/>「情绪已平复」淡出</div>
+  </div>
+</div>
+</div>
+</div>
+<div class="sub-panel" id="p2s2">
+<div class="sec-head teal">TouchDesigner 节点结构</div>
+<div class="grid-2">
+<div class="card">
+  <div class="card-title">数据采集层</div>
+  <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+    <div style="display:flex;align-items:center;gap:6px"><div style="font-size:10px;padding:4px 10px;border-radius:4px;background:#FAEEDA;color:#633806;border:0.5px solid #EF9F27;font-family:monospace">Audio In CHOP</div><span style="font-size:10px;color:#bbb">→</span><span style="font-size:10px;color:#666">麦克风实时输入</span></div>
+    <div style="display:flex;align-items:center;gap:6px"><div style="font-size:10px;padding:4px 10px;border-radius:4px;background:#FAEEDA;color:#633806;border:0.5px solid #EF9F27;font-family:monospace">Analyze CHOP</div><span style="font-size:10px;color:#bbb">→</span><span style="font-size:10px;color:#666">提取响度 + 判断吸/呼</span></div>
+    <div style="display:flex;align-items:center;gap:6px"><div style="font-size:10px;padding:4px 10px;border-radius:4px;background:#FAEEDA;color:#633806;border:0.5px solid #EF9F27;font-family:monospace">Filter CHOP</div><span style="font-size:10px;color:#bbb">→</span><span style="font-size:10px;color:#666">平滑噪点</span></div>
+    <div style="display:flex;align-items:center;gap:6px"><div style="font-size:10px;padding:4px 10px;border-radius:4px;background:#FAEEDA;color:#633806;border:0.5px solid #EF9F27;font-family:monospace">Timer CHOP</div><span style="font-size:10px;color:#bbb">→</span><span style="font-size:10px;color:#666">4-2-6标准模板曲线</span></div>
+    <div style="display:flex;align-items:center;gap:6px"><div style="font-size:10px;padding:4px 10px;border-radius:4px;background:#FAEEDA;color:#633806;border:0.5px solid #EF9F27;font-family:monospace">Math CHOP</div><span style="font-size:10px;color:#bbb">→</span><span style="font-size:10px;color:#666">实时输入与模板相似度比对</span></div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-title">视觉渲染层</div>
+  <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+    <div style="display:flex;align-items:center;gap:6px"><div style="font-size:10px;padding:4px 10px;border-radius:4px;background:#E1EFFE;color:#0A3D72;border:0.5px solid #3B82F6;font-family:monospace">Feedback TOP</div><span style="font-size:10px;color:#bbb">→</span><span style="font-size:10px;color:#666">水面基底，保留上一帧</span></div>
+    <div style="display:flex;align-items:center;gap:6px"><div style="font-size:10px;padding:4px 10px;border-radius:4px;background:#E1EFFE;color:#0A3D72;border:0.5px solid #3B82F6;font-family:monospace">Blur + Displace TOP</div><span style="font-size:10px;color:#bbb">→</span><span style="font-size:10px;color:#666">波纹扩散物理模拟</span></div>
+    <div style="display:flex;align-items:center;gap:6px"><div style="font-size:10px;padding:4px 10px;border-radius:4px;background:#E1EFFE;color:#0A3D72;border:0.5px solid #3B82F6;font-family:monospace">Noise TOP</div><span style="font-size:10px;color:#bbb">→</span><span style="font-size:10px;color:#666">初始混乱涟漪生成</span></div>
+    <div style="display:flex;align-items:center;gap:6px"><div style="font-size:10px;padding:4px 10px;border-radius:4px;background:#E1EFFE;color:#0A3D72;border:0.5px solid #3B82F6;font-family:monospace">Level TOP</div><span style="font-size:10px;color:#bbb">→</span><span style="font-size:10px;color:#666">颜色映射：暖橙→冷蓝→冷白</span></div>
+    <div style="display:flex;align-items:center;gap:6px"><div style="font-size:10px;padding:4px 10px;border-radius:4px;background:#F1EFE8;color:#444441;border:0.5px solid #888780;font-family:monospace">Window COMP</div><span style="font-size:10px;color:#bbb">→</span><span style="font-size:10px;color:#666">横向屏幕全屏输出</span></div>
+  </div>
+  <div class="note">Feedback + Blur + Displace 原生节点实现水面模拟，呼气触发点注入高亮点自动产生扩散效果。</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="page" id="page3">
+<p class="page-title">手机端 · 界面与信息架构</p>
+<p class="page-sub">Figma Prototype · 9个界面 · 专注家长端</p>
+<div class="sub-tabs">
+  <div class="sub-tab active" onclick="switchSub(3,0)">界面清单 + 线框图</div>
+  <div class="sub-tab" onclick="switchSub(3,1)">信息架构</div>
+</div>
+<div class="sub-panel active" id="p3s0"><p class="page-title">手机 App — 界面梳理</p>
+<p class="page-sub">共 9 个界面 · 覆盖准备→辅导→临界→离场→结束完整链路 · 专注家长端</p>
+
+<!-- ══ 界面清单 ══ -->
+<p class="section-label">A · 准备阶段</p>
+<div class="inv-grid inv-grid-2">
+
+<div class="inv-card">
+  <div class="inv-tag tag-b">S-01</div>
+  <div class="inv-title">作业总览主界面</div>
+  <div class="inv-id">首页 · 每次辅导开始前</div>
+  <div class="inv-row">今日科目卡片纵向排列</div>
+  <div class="inv-row">左侧色标标注难度等级</div>
+  <div class="inv-row">预计时长 · 进度轨道（初始为空）</div>
+  <div class="inv-row">底部「开始辅导」按钮</div>
+  <div class="inv-trigger">触发：每日首次进入 · 辅导结束后返回</div>
+</div>
+
+<div class="inv-card">
+  <div class="inv-tag tag-b">S-02</div>
+  <div class="inv-title">作业内容录入</div>
+  <div class="inv-id">S-01 → 点击「添加作业」</div>
+  <div class="inv-row">按科目逐项添加作业题目</div>
+  <div class="inv-row">手动输入 / 拍照识别两种方式</div>
+  <div class="inv-row">难度标记（简单 / 一般 / 较难）</div>
+  <div class="inv-row">预计时长设置</div>
+  <div class="inv-trigger">触发：点击主界面「添加」按钮</div>
+</div>
+
+</div>
+
+<div class="divider"></div>
+<p class="section-label">B · 辅导进行中</p>
+<div class="inv-grid">
+
+<div class="inv-card">
+  <div class="inv-tag tag-b">S-03</div>
+  <div class="inv-title">辅导进行中（正常）</div>
+  <div class="inv-id">主辅导界面 · C-1 阶段</div>
+  <div class="inv-row">当前任务卡片置顶展开</div>
+  <div class="inv-row">任务步骤列表 · 剩余时间</div>
+  <div class="inv-row">其余科目折叠显示</div>
+  <div class="inv-row">底部总进度条</div>
+  <div class="inv-row">手表连接状态角标（右上角）</div>
+  <div class="inv-trigger">触发：点击「开始辅导」</div>
+</div>
+
+<div class="inv-card">
+  <div class="inv-tag tag-b">S-04</div>
+  <div class="inv-title">停滞检测提示</div>
+  <div class="inv-id">主辅导界面叠加 · C-2 阶段</div>
+  <div class="inv-row">任务卡右上角出现暖橙色圆点</div>
+  <div class="inv-row">点击展开：「这道题花了点时间」</div>
+  <div class="inv-row">提示文字 · × 关闭按钮</div>
+  <div class="inv-row">底层界面不变，可忽略</div>
+  <div class="inv-trigger">触发：同一步骤停留 &gt;90秒</div>
+</div>
+
+<div class="inv-card">
+  <div class="inv-tag tag-c">S-05</div>
+  <div class="inv-title">话语替代浮层</div>
+  <div class="inv-id">底部上滑浮层 · C-3 阶段</div>
+  <div class="inv-row">半透明遮罩 · 从底部滑出</div>
+  <div class="inv-row">1—2 条中性替代句式</div>
+  <div class="inv-row">「好的」按钮收起 · 下滑关闭</div>
+  <div class="inv-row">不自动消失</div>
+  <div class="inv-trigger">触发：同一步骤操作 &gt;3次</div>
+</div>
+
+<div class="inv-card">
+  <div class="inv-tag tag-c">S-06</div>
+  <div class="inv-title">临界视图</div>
+  <div class="inv-id">全屏替换 · C-4 阶段</div>
+  <div class="inv-row">界面整体切换为浅橙色调</div>
+  <div class="inv-row">进度居中保存显示</div>
+  <div class="inv-row">「现在可以稍作休息」提示</div>
+  <div class="inv-row">零操作即可离场</div>
+  <div class="inv-row">「继续辅导」按钮（次要）</div>
+  <div class="inv-trigger">触发：手表发送临界指令</div>
+</div>
+
+<div class="inv-card">
+  <div class="inv-tag tag-c">S-07</div>
+  <div class="inv-title">简化锁定视图</div>
+  <div class="inv-id">家长离场状态 · C-5 阶段</div>
+  <div class="inv-row">深色背景 · 最简内容</div>
+  <div class="inv-row">当前进度位置保留显示</div>
+  <div class="inv-row">暂停图标居中</div>
+  <div class="inv-row">「等待返回中」状态文字</div>
+  <div class="inv-row">家长返回后自动恢复 S-03</div>
+  <div class="inv-trigger">触发：检测到家长离场</div>
+</div>
+
+</div>
+
+<div class="divider"></div>
+<p class="section-label">C · 结束与设置</p>
+<div class="inv-grid inv-grid-2">
+
+<div class="inv-card">
+  <div class="inv-tag tag-g">S-08</div>
+  <div class="inv-title">辅导结束小结</div>
+  <div class="inv-id">辅导结束后自动呈现</div>
+  <div class="inv-row">今日完成率 · 总用时</div>
+  <div class="inv-row">系统介入次数简报（话语替代/临界）</div>
+  <div class="inv-row">三端关闭确认</div>
+  <div class="inv-trigger">触发：所有任务完成 / 手动结束</div>
+</div>
+
+<div class="inv-card">
+  <div class="inv-tag tag-g">S-09</div>
+  <div class="inv-title">设置中心</div>
+  <div class="inv-id">常驻入口 · 右上角齿轮图标</div>
+  <div class="inv-row">家长类型重新校准</div>
+  <div class="inv-row">系统参数调整（阈值 / 触发频率）</div>
+  <div class="inv-row">话语替代句式库管理</div>
+  <div class="inv-row">历史记录 · 设备管理</div>
+  <div class="inv-trigger">触发：点击设置入口</div>
+</div>
+
+</div>
+
+<!-- ══ 线框图 ══ -->
+<div class="divider"></div>
+<p class="section-label">界面线框示意图</p>
+
+<div class="wf-grid" style="margin-bottom:20px">
+
+<!-- S-01 作业总览 -->
+<div class="wf-cell">
+<svg width="100%" viewBox="0 0 90 162" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="86" height="158" rx="10" fill="#fff" stroke="#c8c4bc" stroke-width="1.5"/>
+  <rect x="32" y="5" width="26" height="4" rx="2" fill="#d4d0c8"/>
+  <rect x="8" y="16" width="74" height="18" rx="4" fill="#DCEEFB" stroke="#90CFF6" stroke-width="0.5"/>
+  <text x="45" y="25" text-anchor="middle" dominant-baseline="central" font-size="7" fill="#0C447C" font-weight="500">今日作业</text>
+  <rect x="8" y="38" width="74" height="20" rx="4" fill="#f7f4ef" stroke="#d4d0c8" stroke-width="0.5"/>
+  <rect x="8" y="38" width="4" height="20" rx="2" fill="#185FA5"/>
+  <text x="16" y="45" font-size="6" fill="#1a1a1a" font-weight="500">语文</text>
+  <text x="16" y="54" font-size="5.5" fill="#999">第3题 · 解析句子</text>
+  <rect x="8" y="62" width="74" height="20" rx="4" fill="#f7f4ef" stroke="#d4d0c8" stroke-width="0.5"/>
+  <rect x="8" y="62" width="4" height="20" rx="2" fill="#EF9F27"/>
+  <text x="16" y="69" font-size="6" fill="#1a1a1a" font-weight="500">数学</text>
+  <text x="16" y="78" font-size="5.5" fill="#999">计算题 ×4</text>
+  <rect x="8" y="86" width="74" height="20" rx="4" fill="#f7f4ef" stroke="#d4d0c8" stroke-width="0.5"/>
+  <rect x="8" y="86" width="4" height="20" rx="2" fill="#1D9E75"/>
+  <text x="16" y="93" font-size="6" fill="#1a1a1a" font-weight="500">英语</text>
+  <text x="16" y="102" font-size="5.5" fill="#999">单词默写 ×10</text>
+  <rect x="18" y="118" width="54" height="14" rx="4" fill="#185FA5"/>
+  <text x="45" y="125" text-anchor="middle" dominant-baseline="central" font-size="6.5" fill="#fff" font-weight="500">开始辅导</text>
+  <rect x="8" y="142" width="74" height="3" rx="1.5" fill="#e8e4dc"/>
+</svg>
+<div class="wf-label">S-01</div>
+<div class="wf-sub">作业总览</div>
+</div>
+
+<!-- S-02 录入 -->
+<div class="wf-cell">
+<svg width="100%" viewBox="0 0 90 162" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="86" height="158" rx="10" fill="#fff" stroke="#c8c4bc" stroke-width="1.5"/>
+  <rect x="32" y="5" width="26" height="4" rx="2" fill="#d4d0c8"/>
+  <text x="45" y="18" text-anchor="middle" dominant-baseline="central" font-size="6.5" fill="#1a1a1a" font-weight="500">添加作业</text>
+  <rect x="8" y="26" width="74" height="14" rx="3" fill="#f7f4ef" stroke="#d4d0c8" stroke-width="0.5"/>
+  <text x="14" y="33" dominant-baseline="central" font-size="5.5" fill="#999">科目</text>
+  <rect x="8" y="44" width="74" height="14" rx="3" fill="#f7f4ef" stroke="#d4d0c8" stroke-width="0.5"/>
+  <text x="14" y="51" dominant-baseline="central" font-size="5.5" fill="#999">题目描述</text>
+  <text x="10" y="68" font-size="5.5" fill="#999">难度</text>
+  <rect x="8" y="72" width="20" height="10" rx="3" fill="#E1EFFE" stroke="#185FA5" stroke-width="0.5"/>
+  <text x="18" y="77" text-anchor="middle" dominant-baseline="central" font-size="5" fill="#0A3D72">简单</text>
+  <rect x="32" y="72" width="20" height="10" rx="3" fill="#f7f4ef" stroke="#d4d0c8" stroke-width="0.5"/>
+  <text x="42" y="77" text-anchor="middle" dominant-baseline="central" font-size="5" fill="#666">一般</text>
+  <rect x="56" y="72" width="20" height="10" rx="3" fill="#f7f4ef" stroke="#d4d0c8" stroke-width="0.5"/>
+  <text x="66" y="77" text-anchor="middle" dominant-baseline="central" font-size="5" fill="#666">较难</text>
+  <text x="10" y="92" font-size="5.5" fill="#999">录入方式</text>
+  <rect x="8" y="96" width="34" height="12" rx="3" fill="#185FA5"/>
+  <text x="25" y="102" text-anchor="middle" dominant-baseline="central" font-size="5.5" fill="#fff">手动输入</text>
+  <rect x="46" y="96" width="34" height="12" rx="3" fill="#f7f4ef" stroke="#d4d0c8" stroke-width="0.5"/>
+  <text x="63" y="102" text-anchor="middle" dominant-baseline="central" font-size="5.5" fill="#666">拍照识别</text>
+  <rect x="8" y="120" width="74" height="13" rx="4" fill="#185FA5"/>
+  <text x="45" y="126.5" text-anchor="middle" dominant-baseline="central" font-size="6.5" fill="#fff" font-weight="500">保存</text>
+</svg>
+<div class="wf-label">S-02</div>
+<div class="wf-sub">作业录入</div>
+</div>
+
+<!-- S-03 进行中 -->
+<div class="wf-cell">
+<svg width="100%" viewBox="0 0 90 162" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="86" height="158" rx="10" fill="#fff" stroke="#c8c4bc" stroke-width="1.5"/>
+  <rect x="32" y="5" width="26" height="4" rx="2" fill="#d4d0c8"/>
+  <rect x="8" y="14" width="74" height="7" rx="2" fill="#e8e4dc"/>
+  <rect x="8" y="14" width="42" height="7" rx="2" fill="#185FA5"/>
+  <text x="30" y="17.5" dominant-baseline="central" font-size="5" fill="#fff">55%</text>
+  <rect x="8" y="25" width="74" height="52" rx="5" fill="#DCEEFB" stroke="#90CFF6" stroke-width="0.5"/>
+  <text x="14" y="35" font-size="6.5" fill="#0C447C" font-weight="500">语文 · 第3题</text>
+  <text x="14" y="45" font-size="5.5" fill="#185FA5">解析「山行」首句结构</text>
+  <rect x="14" y="50" width="56" height="0.5" fill="#90CFF6"/>
+  <rect x="14" y="54" width="5" height="5" rx="1" fill="#90CFF6"/>
+  <text x="22" y="56.5" dominant-baseline="central" font-size="5" fill="#185FA5">划分主谓宾</text>
+  <rect x="14" y="62" width="5" height="5" rx="1" fill="#d4d0c8"/>
+  <text x="22" y="64.5" dominant-baseline="central" font-size="5" fill="#999">标注修饰成分</text>
+  <rect x="8" y="81" width="74" height="15" rx="4" fill="#f7f4ef" stroke="#d4d0c8" stroke-width="0.5"/>
+  <text x="14" y="88.5" dominant-baseline="central" font-size="5.5" fill="#999">数学 ——</text>
+  <rect x="8" y="100" width="74" height="15" rx="4" fill="#f7f4ef" stroke="#d4d0c8" stroke-width="0.5"/>
+  <text x="14" y="107.5" dominant-baseline="central" font-size="5.5" fill="#999">英语 ——</text>
+  <circle cx="77" cy="29" r="4" fill="#1D9E75"/>
+  <text x="77" y="29" text-anchor="middle" dominant-baseline="central" font-size="5" fill="#fff">W</text>
+</svg>
+<div class="wf-label">S-03</div>
+<div class="wf-sub">辅导进行中</div>
+</div>
+
+<!-- S-04 停滞检测 -->
+<div class="wf-cell">
+<svg width="100%" viewBox="0 0 90 162" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="86" height="158" rx="10" fill="#fff" stroke="#c8c4bc" stroke-width="1.5"/>
+  <rect x="32" y="5" width="26" height="4" rx="2" fill="#d4d0c8"/>
+  <rect x="8" y="14" width="74" height="7" rx="2" fill="#e8e4dc"/>
+  <rect x="8" y="14" width="42" height="7" rx="2" fill="#185FA5"/>
+  <rect x="8" y="25" width="74" height="52" rx="5" fill="#DCEEFB" stroke="#90CFF6" stroke-width="0.5"/>
+  <text x="14" y="35" font-size="6.5" fill="#0C447C" font-weight="500">语文 · 第3题</text>
+  <text x="14" y="45" font-size="5.5" fill="#185FA5">解析「山行」首句结构</text>
+  <circle cx="76" cy="29" r="5" fill="#EF9F27"/>
+  <rect x="40" y="48" width="40" height="24" rx="4" fill="#fff" stroke="#EF9F27" stroke-width="0.8"/>
+  <text x="60" y="56" text-anchor="middle" dominant-baseline="central" font-size="5.5" fill="#633806" font-weight="500">花了点时间</text>
+  <text x="60" y="65" text-anchor="middle" dominant-baseline="central" font-size="5" fill="#854F0B">不着急，继续想</text>
+  <text x="77" y="51" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#854F0B">×</text>
+  <rect x="8" y="81" width="74" height="15" rx="4" fill="#f7f4ef" stroke="#d4d0c8" stroke-width="0.5"/>
+  <text x="14" y="88.5" dominant-baseline="central" font-size="5.5" fill="#999">数学 ——</text>
+</svg>
+<div class="wf-label">S-04</div>
+<div class="wf-sub">停滞检测</div>
+</div>
+
+<!-- S-05 话语替代浮层 -->
+<div class="wf-cell">
+<svg width="100%" viewBox="0 0 90 162" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="86" height="158" rx="10" fill="#fff" stroke="#c8c4bc" stroke-width="1.5"/>
+  <rect x="32" y="5" width="26" height="4" rx="2" fill="#d4d0c8"/>
+  <rect x="2" y="2" width="86" height="158" rx="10" fill="rgba(0,0,0,0.16)"/>
+  <rect x="2" y="74" width="86" height="86" rx="10" fill="#fff"/>
+  <rect x="30" y="78" width="30" height="3" rx="1.5" fill="#d4d0c8"/>
+  <text x="45" y="92" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#999" font-weight="500">换一种说法</text>
+  <rect x="8" y="100" width="74" height="18" rx="4" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
+  <text x="45" y="109" text-anchor="middle" dominant-baseline="central" font-size="5.5" fill="#412402">「我们一起看看哪里卡住了」</text>
+  <rect x="8" y="122" width="74" height="18" rx="4" fill="#FAEEDA" stroke="#EF9F27" stroke-width="0.5"/>
+  <text x="45" y="131" text-anchor="middle" dominant-baseline="central" font-size="5.5" fill="#412402">「先做下一题，回头再来」</text>
+  <rect x="22" y="145" width="46" height="11" rx="3" fill="#185FA5"/>
+  <text x="45" y="150.5" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#fff" font-weight="500">好的</text>
+</svg>
+<div class="wf-label">S-05</div>
+<div class="wf-sub">话语替代浮层</div>
+</div>
+
+</div>
+
+<div class="wf-grid wf-grid-4">
+
+<!-- S-06 临界视图 -->
+<div class="wf-cell">
+<svg width="100%" viewBox="0 0 90 162" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="86" height="158" rx="10" fill="#FEF0E6" stroke="#EF9F27" stroke-width="1.5"/>
+  <rect x="32" y="5" width="26" height="4" rx="2" fill="#EF9F27"/>
+  <text x="45" y="36" text-anchor="middle" dominant-baseline="central" font-size="7" fill="#633806" font-weight="500">现在可以稍作休息</text>
+  <text x="45" y="48" text-anchor="middle" font-size="5.5" fill="#854F0B">当前进度已保存</text>
+  <rect x="22" y="56" width="46" height="38" rx="6" fill="#fff" stroke="#EF9F27" stroke-width="0.5"/>
+  <text x="45" y="68" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#633806" font-weight="500">语文</text>
+  <text x="45" y="78" text-anchor="middle" dominant-baseline="central" font-size="5.5" fill="#854F0B">第3题 · 进行中</text>
+  <rect x="30" y="84" width="30" height="4" rx="2" fill="#FAEEDA"/>
+  <rect x="30" y="84" width="16" height="4" rx="2" fill="#EF9F27"/>
+  <text x="45" y="112" text-anchor="middle" dominant-baseline="central" font-size="5.5" fill="#854F0B">离开后系统将保持节奏</text>
+  <rect x="18" y="126" width="54" height="12" rx="4" fill="#fff" stroke="#EF9F27" stroke-width="0.5"/>
+  <text x="45" y="132" text-anchor="middle" dominant-baseline="central" font-size="5.5" fill="#633806">继续辅导</text>
+</svg>
+<div class="wf-label">S-06</div>
+<div class="wf-sub">临界视图</div>
+</div>
+
+<!-- S-07 简化锁定 -->
+<div class="wf-cell">
+<svg width="100%" viewBox="0 0 90 162" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="86" height="158" rx="10" fill="#1A2A3A" stroke="#2A4A6A" stroke-width="1.5"/>
+  <rect x="32" y="5" width="26" height="4" rx="2" fill="#2A4A6A"/>
+  <text x="45" y="52" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#7AABB0">当前进度</text>
+  <text x="45" y="64" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#fff" font-weight="500">语文 · 55%</text>
+  <rect x="24" y="72" width="42" height="4" rx="2" fill="#2A4A6A"/>
+  <rect x="24" y="72" width="23" height="4" rx="2" fill="#5EB6F4"/>
+  <rect x="35" y="86" width="20" height="20" rx="3" fill="none" stroke="#5EB6F4" stroke-width="1.5"/>
+  <rect x="39" y="90" width="5" height="12" rx="1.5" fill="#5EB6F4"/>
+  <rect x="46" y="90" width="5" height="12" rx="1.5" fill="#5EB6F4"/>
+  <text x="45" y="116" text-anchor="middle" dominant-baseline="central" font-size="5.5" fill="#7AABB0">等待返回中</text>
+</svg>
+<div class="wf-label">S-07</div>
+<div class="wf-sub">简化锁定视图</div>
+</div>
+
+<!-- S-08 小结 -->
+<div class="wf-cell">
+<svg width="100%" viewBox="0 0 90 162" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="86" height="158" rx="10" fill="#fff" stroke="#c8c4bc" stroke-width="1.5"/>
+  <rect x="32" y="5" width="26" height="4" rx="2" fill="#d4d0c8"/>
+  <text x="45" y="20" text-anchor="middle" dominant-baseline="central" font-size="6.5" fill="#1a1a1a" font-weight="500">今日辅导完成</text>
+  <rect x="8" y="28" width="34" height="28" rx="5" fill="#E6F1FB"/>
+  <text x="25" y="38" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#0C447C" font-weight="500">88%</text>
+  <text x="25" y="50" text-anchor="middle" dominant-baseline="central" font-size="5" fill="#185FA5">完成率</text>
+  <rect x="48" y="28" width="34" height="28" rx="5" fill="#E6F1FB"/>
+  <text x="65" y="38" text-anchor="middle" dominant-baseline="central" font-size="7.5" fill="#0C447C" font-weight="500">42min</text>
+  <text x="65" y="50" text-anchor="middle" dominant-baseline="central" font-size="5" fill="#185FA5">总用时</text>
+  <rect x="8" y="60" width="74" height="16" rx="4" fill="#f7f4ef"/>
+  <text x="14" y="68" dominant-baseline="central" font-size="5" fill="#999">系统介入</text>
+  <text x="78" y="68" text-anchor="end" dominant-baseline="central" font-size="5" fill="#666">话语替代×2 · 临界×1</text>
+  <rect x="8" y="80" width="34" height="26" rx="5" fill="#EAF3DE"/>
+  <text x="25" y="90" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#27500A" font-weight="500">3</text>
+  <text x="25" y="100" text-anchor="middle" dominant-baseline="central" font-size="5" fill="#3B6D11">介入次数</text>
+  <rect x="48" y="80" width="34" height="26" rx="5" fill="#EAF3DE"/>
+  <text x="65" y="93" text-anchor="middle" dominant-baseline="central" font-size="8" fill="#27500A" font-weight="500">低</text>
+  <text x="65" y="102" text-anchor="middle" dominant-baseline="central" font-size="5" fill="#3B6D11">情绪压力</text>
+  <rect x="18" y="118" width="54" height="12" rx="4" fill="#185FA5"/>
+  <text x="45" y="124" text-anchor="middle" dominant-baseline="central" font-size="6" fill="#fff" font-weight="500">完成，关闭系统</text>
+</svg>
+<div class="wf-label">S-08</div>
+<div class="wf-sub">辅导结束小结</div>
+</div>
+
+<!-- S-09 设置 -->
+<div class="wf-cell">
+<svg width="100%" viewBox="0 0 90 162" xmlns="http://www.w3.org/2000/svg">
+  <rect x="2" y="2" width="86" height="158" rx="10" fill="#fff" stroke="#c8c4bc" stroke-width="1.5"/>
+  <rect x="32" y="5" width="26" height="4" rx="2" fill="#d4d0c8"/>
+  <text x="45" y="20" text-anchor="middle" dominant-baseline="central" font-size="6.5" fill="#1a1a1a" font-weight="500">设置</text>
+  <rect x="8" y="28" width="74" height="15" rx="3" fill="#f7f4ef" stroke="#d4d0c8" stroke-width="0.5"/>
+  <text x="14" y="35.5" dominant-baseline="central" font-size="5.5" fill="#444">家长类型校准</text>
+  <text x="78" y="35.5" text-anchor="end" dominant-baseline="central" font-size="8" fill="#bbb">›</text>
+  <rect x="8" y="47" width="74" height="15" rx="3" fill="#f7f4ef" stroke="#d4d0c8" stroke-width="0.5"/>
+  <text x="14" y="54.5" dominant-baseline="central" font-size="5.5" fill="#444">停滞检测阈值</text>
+  <text x="78" y="54.5" text-anchor="end" dominant-baseline="central" font-size="8" fill="#bbb">›</text>
+  <rect x="8" y="66" width="74" height="15" rx="3" fill="#f7f4ef" stroke="#d4d0c8" stroke-width="0.5"/>
+  <text x="14" y="73.5" dominant-baseline="central" font-size="5.5" fill="#444">话语替代句式库</text>
+  <text x="78" y="73.5" text-anchor="end" dominant-baseline="central" font-size="8" fill="#bbb">›</text>
+  <rect x="8" y="85" width="74" height="15" rx="3" fill="#f7f4ef" stroke="#d4d0c8" stroke-width="0.5"/>
+  <text x="14" y="92.5" dominant-baseline="central" font-size="5.5" fill="#444">历史记录</text>
+  <text x="78" y="92.5" text-anchor="end" dominant-baseline="central" font-size="8" fill="#bbb">›</text>
+  <rect x="8" y="104" width="74" height="15" rx="3" fill="#f7f4ef" stroke="#d4d0c8" stroke-width="0.5"/>
+  <text x="14" y="111.5" dominant-baseline="central" font-size="5.5" fill="#444">设备管理</text>
+  <text x="78" y="111.5" text-anchor="end" dominant-baseline="central" font-size="8" fill="#bbb">›</text>
+</svg>
+<div class="wf-label">S-09</div>
+<div class="wf-sub">设置中心</div>
+</div>
+
+</div></div>
+<div class="sub-panel" id="p3s1"><p class="page-title">手机 App — 家长端</p>
+<p class="page-sub">职责：作业进程推进与记录 · 接收手表状态数据 · 界面自适应切换 · 话语替代推送</p>
+
+<div style="display:flex;justify-content:center;margin-bottom:18px">
+  <div class="node n-root">手机 App（家长端）</div>
+</div>
+
+<!-- A -->
+<p class="section-label">A · 设置与初始化</p>
+<div class="row">
+  <div class="node n-sec amber"><span class="label">首次设置</span></div>
+  <div class="hline" style="margin-top:19px"></div>
+  <div class="col">
+    <div class="node"><span class="label">账户创建与设备配对</span>
+      <div class="chips"><span class="chip amber">家长信息录入</span><span class="chip amber">配对手表</span><span class="chip amber">配对装置</span><span class="chip amber">连接状态确认</span></div>
+    </div>
+    <div class="node"><span class="label">家长类型校准</span>
+      <div class="desc">3—5题问卷，确定系统默认介入强度</div>
+      <div class="chips"><span class="chip amber">权威指导型</span><span class="chip amber">焦虑施压型</span><span class="chip amber">低效能型</span><span class="chip amber">回避累积型</span></div>
+    </div>
+    <div class="node"><span class="label">话语提示自定义</span>
+      <div class="desc">预设话语替代句式库，可增删修改</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- B -->
+<p class="section-label">B · 辅导前准备</p>
+<div class="row">
+  <div class="node n-sec teal"><span class="label">作业录入</span></div>
+  <div class="hline" style="margin-top:19px"></div>
+  <div class="col">
+    <div class="node"><span class="label">今日作业总览主界面</span>
+      <div class="chips"><span class="chip teal">科目卡片</span><span class="chip teal">难度色标</span><span class="chip teal">预计时长</span><span class="chip teal">进度轨道</span></div>
+    </div>
+    <div class="node"><span class="label">作业内容录入</span>
+      <div class="chips"><span class="chip teal">手动输入</span><span class="chip teal">拍照识别</span><span class="chip teal">难度标记</span></div>
+    </div>
+    <div class="node"><span class="label">三端启动确认</span>
+      <div class="desc">家长点击启动，手表与装置同步进入运行状态</div>
+      <div class="chips"><span class="chip teal">三端同步启动</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- C -->
+<p class="section-label">C · 辅导进行中（主流程）</p>
+
+<div class="row" style="margin-bottom:8px">
+  <div class="node n-sec purple"><span class="label">C-1 正常推进</span></div>
+  <div class="hline" style="margin-top:18px"></div>
+  <div class="node" style="min-width:140px">
+    <span class="label">当前任务置顶视图</span>
+    <div class="desc">展开的任务卡片 + 步骤 + 剩余时间</div>
+    <div class="chips"><span class="chip purple">底部总进度条</span><span class="chip purple">折叠其余科目</span><span class="chip purple">静默运行</span></div>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom:8px">
+  <div class="node n-sec purple"><span class="label">C-2 停滞检测 <span class="badge badge-trigger">策略一</span></span></div>
+  <div class="hline" style="margin-top:18px"></div>
+  <div class="node" style="min-width:140px">
+    <span class="label">停滞提示（卡片右上角）</span>
+    <div class="desc">停留超过90秒后触发，暖橙色小圆点出现</div>
+    <div class="chips"><span class="chip purple">点击展开提示</span><span class="chip purple">可忽略</span><span class="chip purple">× 关闭</span></div>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom:8px">
+  <div class="node n-sec purple"><span class="label">C-3 话语替代 <span class="badge badge-trigger">策略二</span></span></div>
+  <div class="hline" style="margin-top:18px"></div>
+  <div class="node" style="min-width:160px">
+    <span class="label">话语替代浮层</span>
+    <div class="desc">同一步骤连续操作超过3次后从底部滑出</div>
+    <div class="chips"><span class="chip purple">1—2条中性句式</span><span class="chip purple">点击"好的"收起</span><span class="chip purple">不自动消失</span></div>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom:8px">
+  <div class="node n-sec coral"><span class="label">C-4 接收临界信号 <span class="badge badge-trigger">策略三</span></span></div>
+  <div class="hline" style="margin-top:18px"></div>
+  <div class="node" style="min-width:160px">
+    <span class="label">切换临界视图</span>
+    <div class="desc">接收手表发来的临界触发指令，三端联动切换状态</div>
+    <div class="chips"><span class="chip coral">浅橙色界面</span><span class="chip coral">进度居中保存</span><span class="chip coral">零操作可离场</span><span class="chip coral">"继续辅导"按钮</span></div>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom:4px">
+  <div class="node n-sec purple"><span class="label">C-5 家长离场</span></div>
+  <div class="hline" style="margin-top:18px"></div>
+  <div class="node" style="min-width:140px">
+    <span class="label">简化锁定视图</span>
+    <div class="desc">手机随家长离场，进度保留，静默等待返回</div>
+    <div class="chips"><span class="chip purple">暗屏+进度位置</span><span class="chip purple">暂停图标</span><span class="chip purple">返回自动恢复</span></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- D -->
+<p class="section-label">D · 辅导结束</p>
+<div class="row">
+  <div class="node n-sec coral"><span class="label">结束流程</span></div>
+  <div class="hline" style="margin-top:19px"></div>
+  <div class="col">
+    <div class="node"><span class="label">今日辅导小结</span>
+      <div class="chips"><span class="chip coral">完成率</span><span class="chip coral">总用时</span><span class="chip coral">介入次数</span></div>
+    </div>
+    <div class="node"><span class="label">三端关闭确认</span>
+      <div class="desc">手机提示手表与装置同步退出运行状态</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- E -->
+<p class="section-label">E · 设置与个人中心</p>
+<div class="row">
+  <div class="node n-sec gray"><span class="label">设置中心</span></div>
+  <div class="hline" style="margin-top:19px"></div>
+  <div class="col">
+    <div class="node"><span class="label">家长类型重新校准</span>
+      <div class="chips"><span class="chip gray">重做问卷</span><span class="chip gray">手动调整介入强度</span></div>
+    </div>
+    <div class="node"><span class="label">系统参数调整</span>
+      <div class="chips"><span class="chip gray">停滞检测阈值</span><span class="chip gray">话语替代触发频率</span></div>
+    </div>
+    <div class="node"><span class="label">历史记录</span>
+      <div class="chips"><span class="chip gray">辅导记录列表</span><span class="chip gray">介入事件回顾</span><span class="chip gray">趋势图</span></div>
+    </div>
+    <div class="node"><span class="label">设备管理</span>
+      <div class="chips"><span class="chip gray">手表连接状态</span><span class="chip gray">装置连接状态</span><span class="chip gray">重新配对</span></div>
+    </div>
+  </div>
+</div></div>
+</div>
+
+<div class="page" id="page4">
+<p class="page-title">手表端 · 界面与信息架构</p>
+<p class="page-sub">Apple Watch 实机 · 6个状态界面 · 语气+心率双通道感知</p>
+<div class="sub-tabs">
+  <div class="sub-tab active" onclick="switchSub(4,0)">界面清单 + 表盘图</div>
+  <div class="sub-tab" onclick="switchSub(4,1)">信息架构</div>
+</div>
+<div class="sub-panel active" id="p4s0"><p class="page-title">Apple Watch — 界面梳理</p>
+<p class="page-sub">共 6 个状态界面 · 核心职责：语气+心率双通道感知 · 临界触发 · 家长离场后呼吸引导</p>
+
+<!-- 感知模块说明 -->
+<p class="section-label">A · 双通道感知机制（后台持续运行）</p>
+<div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:4px">
+
+<div class="sense-box">
+  <div class="title">A-1 语气监测</div>
+  <div class="desc">手表麦克风后台采集，不识别语音内容，仅分析声学参数</div>
+  <div class="chips">
+    <span class="chip amber">音量强度变化</span>
+    <span class="chip amber">语速变化</span>
+    <span class="chip new">不识别内容</span>
+  </div>
+</div>
+
+<div class="sense-box">
+  <div class="title">A-2 心率监测</div>
+  <div class="desc">HealthKit 持续采集，心率变化滞后于语气，作为临界确认信号</div>
+  <div class="chips">
+    <span class="chip amber">个体基准比对</span>
+    <span class="chip amber">非绝对值判断</span>
+  </div>
+</div>
+
+<div class="sense-box">
+  <div class="title">A-3 双通道融合判断</div>
+  <div class="desc">两者在手表端本地融合，任一或双重触发均可启动临界拦截</div>
+  <div class="chips">
+    <span class="chip coral">语气升级→预警</span>
+    <span class="chip coral">心率超阈值→确认</span>
+    <span class="chip coral">双重叠加→加速触发</span>
+  </div>
+</div>
+
+</div>
+
+<!-- 状态界面清单 -->
+<div class="divider"></div>
+<p class="section-label">B · 表盘状态界面（按辅导流程顺序）</p>
+<div class="inv-grid">
+
+<div class="inv-card">
+  <div class="inv-tag tag-a">W-01</div>
+  <div class="inv-title">未启动</div>
+  <div class="inv-id">辅导开始前</div>
+  <div class="inv-row">正常表盘，无任何系统标记</div>
+  <div class="inv-row">双通道处于待机状态</div>
+  <div class="inv-trigger">触发：辅导启动前默认状态</div>
+</div>
+
+<div class="inv-card">
+  <div class="inv-tag tag-a">W-02</div>
+  <div class="inv-title">监测中</div>
+  <div class="inv-id">辅导进行中 · 正常状态</div>
+  <div class="inv-row">正常表盘 + 描边圆点（右下角）</div>
+  <div class="inv-row">暖橙色描边空心圆，约3mm</div>
+  <div class="inv-row">双通道后台持续运行</div>
+  <div class="inv-row">无振动，不打扰辅导节奏</div>
+  <div class="inv-trigger">触发：三端启动确认后</div>
+</div>
+
+<div class="inv-card">
+  <div class="inv-tag tag-c">W-03</div>
+  <div class="inv-title">临界触发</div>
+  <div class="inv-id">策略三 · 临界拦截</div>
+  <div class="inv-row">暗红色表盘底色</div>
+  <div class="inv-row">暂停图标居中显示</div>
+  <div class="inv-row">「稍作休息」文字提示</div>
+  <div class="inv-row">振动×2（间隔0.8秒·强度60%）</div>
+  <div class="inv-row">15秒自动消失</div>
+  <div class="inv-row">同时向手机+装置发送指令</div>
+  <div class="inv-trigger">触发：双通道融合判断达临界</div>
+</div>
+
+<div class="inv-card">
+  <div class="inv-tag tag-b">W-04</div>
+  <div class="inv-title">呼吸引导</div>
+  <div class="inv-id">家长离场后 · 核心界面</div>
+  <div class="inv-row">深蓝色表盘底色</div>
+  <div class="inv-row">张/缩圈动画（圆随呼吸扩缩）</div>
+  <div class="inv-row">文字提示同步切换：吸气/屏息/呼气</div>
+  <div class="inv-row">4秒吸气 → 2秒屏息 → 6秒呼气</div>
+  <div class="inv-row">持续约3分钟后自动结束</div>
+  <div class="inv-row">无需主动操作，全程自动</div>
+  <div class="inv-trigger">触发：家长离场后自动启动</div>
+</div>
+
+<div class="inv-card">
+  <div class="inv-tag tag-a">W-05</div>
+  <div class="inv-title">托管中</div>
+  <div class="inv-id">呼吸引导结束后</div>
+  <div class="inv-row">正常表盘 + 实心圆点（右下角）</div>
+  <div class="inv-row">暖橙色实心圆（描边变实心）</div>
+  <div class="inv-row">系统托管中文字提示</div>
+  <div class="inv-row">持续监测，无振动</div>
+  <div class="inv-trigger">触发：呼吸引导结束后自动切换</div>
+</div>
+
+<div class="inv-card">
+  <div class="inv-tag tag-t">W-06</div>
+  <div class="inv-title">返回恢复</div>
+  <div class="inv-id">家长返回辅导场景</div>
+  <div class="inv-row">绿色边框表盘（短暂过渡）</div>
+  <div class="inv-row">「已返回辅导」文字提示</div>
+  <div class="inv-row">实心圆点 → 描边圆点</div>
+  <div class="inv-row">同时向手机+装置发送恢复指令</div>
+  <div class="inv-row">三端同步重置为进行中状态</div>
+  <div class="inv-trigger">触发：检测到家长返回</div>
+</div>
+
+</div>
+
+<!-- 表盘示意图 -->
+<div class="divider"></div>
+<p class="section-label">表盘状态示意图</p>
+
+<div class="watch-grid">
+
+<div class="ww-cell">
+<svg width="180" height="210" viewBox="0 0 180 210" xmlns="http://www.w3.org/2000/svg">
+  <rect x="64" y="0" width="52" height="22" rx="5" fill="#2A2A2A"/>
+  <rect x="64" y="188" width="52" height="22" rx="5" fill="#2A2A2A"/>
+  <rect x="5" y="22" width="170" height="166" rx="22" fill="#1A1A2A" stroke="#2A2A3A" stroke-width="1.5"/>
+  <text x="90" y="80" text-anchor="middle" dominant-baseline="central" font-size="36" font-weight="500" fill="#fff" font-family="ui-monospace,monospace">10:24</text>
+  <text x="90" y="112" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#7AABB0">周二 · 3月</text>
+  <text x="90" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#3A5A7A">辅导未开始</text>
+</svg>
+<div class="ww-label">W-01</div>
+<div class="ww-id">未启动</div>
+<div class="ww-desc">正常表盘<br/>无系统标记</div>
+</div>
+
+<div class="ww-cell">
+<svg width="180" height="210" viewBox="0 0 180 210" xmlns="http://www.w3.org/2000/svg">
+  <rect x="64" y="0" width="52" height="22" rx="5" fill="#2A2A2A"/>
+  <rect x="64" y="188" width="52" height="22" rx="5" fill="#2A2A2A"/>
+  <rect x="5" y="22" width="170" height="166" rx="22" fill="#1A1A2A" stroke="#2A3A4A" stroke-width="1.5"/>
+  <text x="90" y="76" text-anchor="middle" dominant-baseline="central" font-size="36" font-weight="500" fill="#fff" font-family="ui-monospace,monospace">10:24</text>
+  <text x="90" y="108" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#7AABB0">78 bpm</text>
+  <circle cx="148" cy="158" r="10" fill="none" stroke="#EF9F27" stroke-width="2"/>
+  <text x="90" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#4A6A7A">语气+心率监测中</text>
+</svg>
+<div class="ww-label">W-02</div>
+<div class="ww-id">监测中</div>
+<div class="ww-desc">描边圆点（右下角）<br/>双通道后台运行，无振动</div>
+</div>
+
+<div class="ww-cell">
+<svg width="180" height="210" viewBox="0 0 180 210" xmlns="http://www.w3.org/2000/svg">
+  <rect x="64" y="0" width="52" height="22" rx="5" fill="#2A2A2A"/>
+  <rect x="64" y="188" width="52" height="22" rx="5" fill="#2A2A2A"/>
+  <rect x="5" y="22" width="170" height="166" rx="22" fill="#1A0A08" stroke="#D85A30" stroke-width="2"/>
+  <rect x="55" y="56" width="70" height="70" rx="12" fill="#2A1208" stroke="#D85A30" stroke-width="1.5"/>
+  <rect x="71" y="68" width="12" height="46" rx="4" fill="#D85A30"/>
+  <rect x="97" y="68" width="12" height="46" rx="4" fill="#D85A30"/>
+  <text x="90" y="146" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#EF9F27" font-weight="500">稍作休息</text>
+  <text x="90" y="163" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#854F0B">15秒后自动消失</text>
+</svg>
+<div class="ww-label">W-03</div>
+<div class="ww-id">临界触发</div>
+<div class="ww-desc">振动×2 + 暂停图标<br/>向手机+装置发送指令</div>
+</div>
+
+<div class="ww-cell">
+<svg width="180" height="210" viewBox="0 0 180 210" xmlns="http://www.w3.org/2000/svg">
+  <rect x="64" y="0" width="52" height="22" rx="5" fill="#2A2A2A"/>
+  <rect x="64" y="188" width="52" height="22" rx="5" fill="#2A2A2A"/>
+  <rect x="5" y="22" width="170" height="166" rx="22" fill="#0A1A2A" stroke="#5EB6F4" stroke-width="2"/>
+  <circle cx="90" cy="105" r="46" fill="none" stroke="#5EB6F4" stroke-width="2.5"/>
+  <circle cx="90" cy="105" r="30" fill="none" stroke="#90CFF6" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <circle cx="90" cy="105" r="14" fill="#5EB6F4" opacity="0.5"/>
+  <circle cx="90" cy="105" r="6" fill="#5EB6F4"/>
+  <text x="90" y="40" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#90CFF6" font-weight="500">吸  气</text>
+  <text x="90" y="168" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#5EB6F4">4 秒</text>
+</svg>
+<div class="ww-label">W-04</div>
+<div class="ww-id">呼吸引导（核心）</div>
+<div class="ww-desc">张/缩圈动画 · 4-2-6节律<br/>文字提示同步切换<br/>持续约3分钟</div>
+</div>
+
+<div class="ww-cell">
+<svg width="180" height="210" viewBox="0 0 180 210" xmlns="http://www.w3.org/2000/svg">
+  <rect x="64" y="0" width="52" height="22" rx="5" fill="#2A2A2A"/>
+  <rect x="64" y="188" width="52" height="22" rx="5" fill="#2A2A2A"/>
+  <rect x="5" y="22" width="170" height="166" rx="22" fill="#1A1A2A" stroke="#2A3A4A" stroke-width="1.5"/>
+  <text x="90" y="76" text-anchor="middle" dominant-baseline="central" font-size="36" font-weight="500" fill="#fff" font-family="ui-monospace,monospace">10:31</text>
+  <text x="90" y="108" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#7AABB0">系统托管中</text>
+  <circle cx="148" cy="158" r="10" fill="#EF9F27"/>
+  <text x="90" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#4A6A7A">装置已接管节奏</text>
+</svg>
+<div class="ww-label">W-05</div>
+<div class="ww-id">托管中</div>
+<div class="ww-desc">实心圆点（暖橙）<br/>持续监测，无振动</div>
+</div>
+
+<div class="ww-cell">
+<svg width="180" height="210" viewBox="0 0 180 210" xmlns="http://www.w3.org/2000/svg">
+  <rect x="64" y="0" width="52" height="22" rx="5" fill="#2A2A2A"/>
+  <rect x="64" y="188" width="52" height="22" rx="5" fill="#2A2A2A"/>
+  <rect x="5" y="22" width="170" height="166" rx="22" fill="#0A1A14" stroke="#1D9E75" stroke-width="2"/>
+  <text x="90" y="76" text-anchor="middle" dominant-baseline="central" font-size="36" font-weight="500" fill="#fff" font-family="ui-monospace,monospace">10:35</text>
+  <text x="90" y="108" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5DCAA5">已返回辅导</text>
+  <circle cx="148" cy="158" r="10" fill="none" stroke="#1D9E75" stroke-width="2"/>
+  <text x="90" y="140" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#3A7A5A">三端已恢复</text>
+</svg>
+<div class="ww-label">W-06</div>
+<div class="ww-id">返回恢复</div>
+<div class="ww-desc">实心→描边圆点<br/>向手机+装置发恢复指令</div>
+</div>
+
+</div>
+
+<!-- 设计边界 -->
+<div class="divider"></div>
+<p class="section-label">C · 设计边界</p>
+<div style="background:#fff;border:0.5px solid #d4d0c8;border-radius:10px;padding:14px 16px">
+  <div style="font-size:11px;color:#666;line-height:1.8">
+    不识别语音内容 &nbsp;·&nbsp; 不显示作业进度 &nbsp;·&nbsp; 不做情绪评价 &nbsp;·&nbsp;
+    不要求主动操作 &nbsp;·&nbsp; 不向儿童传递任何信号
+  </div>
+</div></div>
+<div class="sub-panel" id="p4s1"><p class="page-title">Apple Watch — 家长端</p>
+<p class="page-sub">职责：感知家长状态（语气+心率双通道融合判断）· 临界触发 · 离场后呼吸引导 · 状态数据发送至手机</p>
+
+<div style="display:flex;justify-content:center;margin-bottom:18px">
+  <div class="node n-root">Apple Watch（家长佩戴）</div>
+</div>
+
+<!-- A 感知模块 -->
+<p class="section-label">A · 双通道感知（核心模块）</p>
+
+<div class="row" style="margin-bottom:8px">
+  <div class="node n-sec amber"><span class="label">A-1 语气监测</span></div>
+  <div class="hline" style="margin-top:18px"></div>
+  <div class="col">
+    <div class="node" style="min-width:200px">
+      <span class="label">麦克风采集声学特征</span>
+      <div class="desc">手表麦克风后台持续采集，不识别语音内容，仅分析声学参数</div>
+      <div class="chips"><span class="chip amber">音量强度变化</span><span class="chip amber">语速变化</span><span class="chip new">不识别内容</span></div>
+    </div>
+    <div class="node" style="min-width:200px">
+      <span class="label">语气升级判断</span>
+      <div class="desc">音量持续超基准1.4倍 + 语速持续加快，视为语气升级早期信号</div>
+      <div class="chips"><span class="chip amber">个体基准比对</span><span class="chip amber">早期预警信号</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom:8px">
+  <div class="node n-sec amber"><span class="label">A-2 心率监测</span></div>
+  <div class="hline" style="margin-top:18px"></div>
+  <div class="node" style="min-width:200px">
+    <span class="label">HealthKit 持续采集</span>
+    <div class="desc">心率变化通常滞后于语气变化，作为临界状态的确认信号</div>
+    <div class="chips"><span class="chip amber">个体基准比对</span><span class="chip amber">非绝对值判断</span><span class="chip amber">不上传云端</span></div>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom:8px">
+  <div class="node n-sec coral"><span class="label">A-3 双通道融合判断</span></div>
+  <div class="hline" style="margin-top:18px"></div>
+  <div class="node" style="min-width:220px">
+    <span class="label">任一或双重触发均可启动临界拦截</span>
+    <div class="desc">语气升级作为早期预警，心率超阈值作为确认。两者在手表端本地融合判断，无需跨端传递信号</div>
+    <div class="chips">
+      <span class="chip coral">语气升级 → 预警状态</span>
+      <span class="chip coral">心率超阈值 → 临界确认</span>
+      <span class="chip coral">双重叠加 → 加速触发</span>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- B 表盘状态流 -->
+<p class="section-label">B · 表盘状态流（按辅导流程顺序）</p>
+
+<div class="row" style="margin-bottom:8px">
+  <div class="node n-sec amber"><span class="label">B-1 未启动</span></div>
+  <div class="hline" style="margin-top:18px"></div>
+  <div class="node"><span class="label">正常表盘</span><div class="desc">无任何系统标记，辅导未开始</div></div>
+</div>
+
+<div class="row" style="margin-bottom:8px">
+  <div class="node n-sec amber"><span class="label">B-2 监测中</span></div>
+  <div class="hline" style="margin-top:18px"></div>
+  <div class="node">
+    <span class="label">描边圆点（右下角）</span>
+    <div class="desc">暖橙色描边空心圆点，约3mm，双通道后台持续运行</div>
+    <div class="chips"><span class="chip amber">无振动</span><span class="chip amber">不打扰辅导节奏</span></div>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom:8px">
+  <div class="node n-sec coral"><span class="label">B-3 临界触发 <span class="badge badge-trigger">策略三</span></span></div>
+  <div class="hline" style="margin-top:18px"></div>
+  <div class="node" style="min-width:200px">
+    <span class="label">振动 + 暂停图标</span>
+    <div class="desc">双通道融合判断达到临界，同时向手机发送触发指令，三端联动</div>
+    <div class="chips">
+      <span class="chip coral">振动×2（间隔0.8秒·强度60%）</span>
+      <span class="chip coral">暂停图标 + 「稍作休息」</span>
+      <span class="chip coral">15秒自动消失</span>
+      <span class="chip coral">向手机发送临界指令</span>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom:8px">
+  <div class="node n-sec blue"><span class="label">B-4 呼吸引导 <span class="badge badge-new">新增</span></span></div>
+  <div class="hline" style="margin-top:18px"></div>
+  <div class="col">
+    <div class="node" style="min-width:220px">
+      <span class="label">家长离场后自动启动</span>
+      <div class="desc">帮助家长在离场期间完成情绪恢复，为返回辅导做生理准备</div>
+      <div class="chips"><span class="chip blue">张/缩圈动画</span><span class="chip blue">文字提示（吸气/屏息/呼气）</span></div>
+    </div>
+    <div class="node" style="min-width:220px">
+      <span class="label">4-2-6 呼吸节律</span>
+      <div class="desc">4秒吸气 → 2秒屏息 → 6秒呼气，持续约3分钟后自动结束</div>
+      <div class="chips">
+        <span class="chip blue">圆圈随吸气扩张</span>
+        <span class="chip blue">随呼气收缩</span>
+        <span class="chip blue">约3分钟后自动结束</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom:8px">
+  <div class="node n-sec amber"><span class="label">B-5 托管中</span></div>
+  <div class="hline" style="margin-top:18px"></div>
+  <div class="node">
+    <span class="label">实心圆点（暖橙）</span>
+    <div class="desc">描边变实心，表示系统正在托管，感知持续运行</div>
+    <div class="chips"><span class="chip amber">无振动</span><span class="chip amber">持续监测</span></div>
+  </div>
+</div>
+
+<div class="row" style="margin-bottom:4px">
+  <div class="node n-sec teal"><span class="label">B-6 返回恢复</span></div>
+  <div class="hline" style="margin-top:18px"></div>
+  <div class="node">
+    <span class="label">实心 → 描边圆点</span>
+    <div class="desc">家长返回，向手机发送恢复指令，三端同步恢复进行中</div>
+    <div class="chips"><span class="chip teal">向手机发送恢复指令</span><span class="chip teal">三端同步</span></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- C 数据发送 -->
+<p class="section-label">C · 向手机发送的状态数据</p>
+<div class="row">
+  <div class="node n-sec blue"><span class="label">状态上报</span></div>
+  <div class="hline" style="margin-top:19px"></div>
+  <div class="col">
+    <div class="node">
+      <span class="label">实时状态类型</span>
+      <div class="chips">
+        <span class="chip blue">正常监测中</span>
+        <span class="chip blue">语气预警</span>
+        <span class="chip coral">临界触发</span>
+        <span class="chip blue">家长离场（托管中）</span>
+        <span class="chip teal">家长返回</span>
+      </div>
+    </div>
+    <div class="node">
+      <span class="label">手机根据状态数据自适应切换</span>
+      <div class="desc">手机不做独立感知，完全依据手表上报状态调整界面与功能</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- D 设置 -->
+<p class="section-label">D · 设置（通过手机操作）</p>
+<div class="row">
+  <div class="node n-sec gray"><span class="label">参数设置</span></div>
+  <div class="hline" style="margin-top:19px"></div>
+  <div class="col">
+    <div class="node"><span class="label">语气监测灵敏度</span>
+      <div class="chips"><span class="chip gray">高/中/低三档</span></div>
+    </div>
+    <div class="node"><span class="label">心率临界阈值</span>
+      <div class="chips"><span class="chip gray">个体基准校准</span><span class="chip gray">灵敏度调整</span></div>
+    </div>
+    <div class="node"><span class="label">振动强度</span>
+      <div class="chips"><span class="chip gray">轻</span><span class="chip gray">中</span><span class="chip gray">标准</span></div>
+    </div>
+    <div class="node"><span class="label">设备连接管理</span>
+      <div class="chips"><span class="chip gray">连接状态</span><span class="chip gray">重新配对</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- E 设计边界 -->
+<p class="section-label">E · 设计边界</p>
+<div class="row">
+  <div class="node n-sec gray"><span class="label">不做的事</span></div>
+  <div class="hline" style="margin-top:18px"></div>
+  <div class="node">
+    <div class="chips">
+      <span class="chip gray">不识别语音内容</span>
+      <span class="chip gray">不显示作业进度</span>
+      <span class="chip gray">不做情绪评价</span>
+      <span class="chip gray">不要求主动操作</span>
+      <span class="chip gray">不向儿童传递信号</span>
+    </div>
+  </div>
+</div></div>
+</div>
+
+<div class="page" id="page5">
+<p class="page-title">三端联动关系</p>
+<p class="page-sub">手表感知决策 · 手机进程执行 · 装置场景锚点 · 辅导全流程状态对照</p>
+<div class="section">
+<h2>三端辅导全流程状态对照</h2>
+<p>语气监测 + 心率采集均在手表端完成 · 手表向手机发送状态数据 · 手机负责进程推进与界面切换</p>
+<svg viewBox="0 0 680 698" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+<rect x="20" y="14" width="90" height="34" rx="6" fill="#F0EDE6" stroke="#C8C4BC" stroke-width="0.5"/><text x="65" y="31" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#2C2C2A">阶段</text><rect x="122" y="14" width="162" height="34" rx="6" fill="#DCEEFB" stroke="#90CFF6" stroke-width="0.5"/><text x="203" y="31" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#0C447C">手机（进程管理）</text><rect x="296" y="14" width="162" height="34" rx="6" fill="#FEF3DA" stroke="#EF9F27" stroke-width="0.5"/><text x="377" y="31" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#412402">Apple Watch（感知）</text><rect x="470" y="14" width="190" height="34" rx="6" fill="#D8F5EC" stroke="#1D9E75" stroke-width="0.5"/><text x="565" y="31" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#04342C">作业情境托管装置</text><rect x="20" y="60" width="90" height="78" rx="4" fill="#F0EDE6" stroke="#C8C4BC" stroke-width="0.5"/><text x="65" y="99" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#2C2C2A">准备</text><rect x="122" y="60" width="162" height="78" rx="4" fill="#EEF6FD" stroke="#90CFF6" stroke-width="0.5"/><text x="203" y="76" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#0C447C">作业总览主界面</text><text x="203" y="96" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#185FA5">科目卡片 · 难度标签</text><text x="203" y="116" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#185FA5">三端启动确认</text><rect x="296" y="60" width="162" height="78" rx="4" fill="#FEFBF0" stroke="#EF9F27" stroke-width="0.5"/><text x="377" y="76" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#412402">正常表盘</text><text x="377" y="96" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#633806">双通道监测待启动</text><text x="377" y="116" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#633806">后台待机</text><rect x="470" y="60" width="190" height="78" rx="4" fill="#EAF7F2" stroke="#1D9E75" stroke-width="0.5"/><text x="565" y="76" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#04342C">待机 · 无光效</text><text x="565" y="96" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">场景边界未建立</text><text x="565" y="116" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">等待三端启动</text><line x1="65" y1="138" x2="65" y2="143" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/><rect x="20" y="144" width="90" height="78" rx="4" fill="#F0EDE6" stroke="#C8C4BC" stroke-width="0.5"/><text x="65" y="183" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#2C2C2A">进行中</text><rect x="122" y="144" width="162" height="78" rx="4" fill="#EEF6FD" stroke="#90CFF6" stroke-width="0.5"/><text x="203" y="160" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#0C447C">任务置顶 · 进度条</text><text x="203" y="180" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#185FA5">接收手表状态数据</text><text x="203" y="200" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#185FA5">静默推进辅导进程</text><rect x="296" y="144" width="162" height="78" rx="4" fill="#FEFBF0" stroke="#EF9F27" stroke-width="0.5"/><text x="377" y="160" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#412402">描边圆点（右下角）</text><text x="377" y="180" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#633806">语气+心率双通道启动</text><text x="377" y="200" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#633806">无振动</text><rect x="470" y="144" width="190" height="78" rx="4" fill="#EAF7F2" stroke="#1D9E75" stroke-width="0.5"/><text x="565" y="160" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#04342C">暖白常亮</text><text x="565" y="180" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">50%亮度 · 稳定无动态</text><text x="565" y="200" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">启动时提示音×1</text><line x1="65" y1="222" x2="65" y2="227" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/><rect x="20" y="228" width="90" height="78" rx="4" fill="#F0EDE6" stroke="#C8C4BC" stroke-width="0.5"/><text x="65" y="258" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#2C2C2A">停滞</text><text x="65" y="278" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#2C2C2A">检测</text><rect x="122" y="228" width="162" height="78" rx="4" fill="#EEF6FD" stroke="#90CFF6" stroke-width="0.5"/><text x="203" y="244" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#0C447C">卡片右上角圆点</text><text x="203" y="264" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#185FA5">停留>90秒 · 策略一</text><text x="203" y="284" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#185FA5">可忽略</text><rect x="296" y="228" width="162" height="78" rx="4" fill="#FEFBF0" stroke="#EF9F27" stroke-width="0.5"/><text x="377" y="244" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#412402">无变化</text><text x="377" y="264" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#633806">双通道监测持续</text><text x="377" y="284" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#633806">不参与此阶段</text><rect x="470" y="228" width="190" height="78" rx="4" fill="#EAF7F2" stroke="#1D9E75" stroke-width="0.5"/><text x="565" y="244" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#04342C">状态不变</text><text x="565" y="264" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">不传递停滞信号</text><text x="565" y="284" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">暖白持续</text><line x1="65" y1="306" x2="65" y2="311" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/><rect x="20" y="312" width="90" height="78" rx="4" fill="#F0EDE6" stroke="#C8C4BC" stroke-width="0.5"/><text x="65" y="342" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#2C2C2A">话语</text><text x="65" y="362" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#2C2C2A">替代</text><rect x="122" y="312" width="162" height="78" rx="4" fill="#EEF6FD" stroke="#90CFF6" stroke-width="0.5"/><text x="203" y="328" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#0C447C">话语替代浮层</text><text x="203" y="348" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#185FA5">1-2条中性句式 · 策略二</text><text x="203" y="368" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#185FA5">手机独立触发</text><rect x="296" y="312" width="162" height="78" rx="4" fill="#FEFBF0" stroke="#EF9F27" stroke-width="0.5"/><text x="377" y="328" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#412402">无变化</text><text x="377" y="348" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#633806">双通道监测持续</text><text x="377" y="368" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#633806">语气预警状态可能激活</text><rect x="470" y="312" width="190" height="78" rx="4" fill="#EAF7F2" stroke="#1D9E75" stroke-width="0.5"/><text x="565" y="328" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#04342C">状态不变</text><text x="565" y="348" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">不介入语言层干预</text><text x="565" y="368" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">暖白持续</text><line x1="65" y1="390" x2="65" y2="395" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/><rect x="20" y="396" width="90" height="78" rx="4" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/><text x="65" y="426" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#4A1B0C">临界</text><text x="65" y="446" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#4A1B0C">触发</text><rect x="122" y="396" width="162" height="78" rx="4" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/><text x="203" y="412" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#4A1B0C">接收临界指令</text><text x="203" y="432" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#712B13">切换浅橙色临界视图</text><text x="203" y="452" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#712B13">零操作可离场</text><rect x="296" y="396" width="162" height="78" rx="4" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/><text x="377" y="412" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#4A1B0C">振动×2+暂停图标</text><text x="377" y="432" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#712B13">「稍作休息」</text><text x="377" y="452" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#712B13">向手机+装置发送指令</text><rect x="470" y="396" width="190" height="78" rx="4" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/><text x="565" y="412" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#4A1B0C">琥珀黄→浅橙</text><text x="565" y="432" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#712B13">呼吸加快 · 提示音×2</text><text x="565" y="452" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#712B13">三端同步</text><line x1="65" y1="474" x2="65" y2="479" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/><rect x="20" y="480" width="90" height="78" rx="4" fill="#F0EDE6" stroke="#C8C4BC" stroke-width="0.5"/><text x="65" y="510" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#2C2C2A">家长</text><text x="65" y="530" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#2C2C2A">离场</text><rect x="122" y="480" width="162" height="78" rx="4" fill="#EEF6FD" stroke="#90CFF6" stroke-width="0.5"/><text x="203" y="496" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#0C447C">简化锁定视图</text><text x="203" y="516" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#185FA5">进度保留 · 静默等待</text><text x="203" y="536" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#185FA5">等待手表返回指令</text><rect x="296" y="480" width="162" height="78" rx="4" fill="#FEFBF0" stroke="#EF9F27" stroke-width="0.5"/><text x="377" y="496" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#412402">切换呼吸引导界面</text><text x="377" y="516" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#633806">4-2-6节律 · 约3分钟</text><text x="377" y="536" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#633806">实心圆点（托管中）</text><rect x="470" y="480" width="190" height="78" rx="4" fill="#EAF7F2" stroke="#1D9E75" stroke-width="0.5"/><text x="565" y="496" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#04342C">持续浅橙呼吸</text><text x="565" y="516" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">延迟5秒启动语音安抚</text><text x="565" y="536" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">告知→维持→肯定</text><line x1="65" y1="558" x2="65" y2="563" stroke="#888780" stroke-width="1" marker-end="url(#arr)"/><rect x="20" y="564" width="90" height="78" rx="4" fill="#D8F5EC" stroke="#1D9E75" stroke-width="0.5"/><text x="65" y="594" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#04342C">家长</text><text x="65" y="614" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#04342C">返回</text><rect x="122" y="564" width="162" height="78" rx="4" fill="#D8F5EC" stroke="#1D9E75" stroke-width="0.5"/><text x="203" y="580" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#04342C">接收返回指令</text><text x="203" y="600" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">自动恢复辅导视图</text><text x="203" y="620" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">三端同步重置</text><rect x="296" y="564" width="162" height="78" rx="4" fill="#D8F5EC" stroke="#1D9E75" stroke-width="0.5"/><text x="377" y="580" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#04342C">实心→描边圆点</text><text x="377" y="600" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">呼吸引导结束</text><text x="377" y="620" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">向手机+装置发恢复指令</text><rect x="470" y="564" width="190" height="78" rx="4" fill="#D8F5EC" stroke="#1D9E75" stroke-width="0.5"/><text x="565" y="580" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="500" fill="#04342C">浅橙→暖白常亮</text><text x="565" y="600" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">语音立即停止</text><text x="565" y="620" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">场景恢复进行中</text>
+</svg>
+</div>
+
+<div class="section">
+<h2>三端信号联动关系</h2>
+<p>手表是感知与决策端，向手机和装置发送指令 · 手机是进程执行端，接收指令后切换状态</p>
+<svg viewBox="0 0 680 488" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <marker id="arr-o"  viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#BA7517" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  <marker id="arr-r"  viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#A32D2D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  <marker id="arr-g"  viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></marker>
+  <marker id="arr-gr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M2 1L8 5L2 9" fill="none" stroke="#888780" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></marker>
+</defs>
+<rect x="28" y="55" width="200" height="110" rx="10" fill="#FEF3DA" stroke="#EF9F27" stroke-width="0.5"/>
+<text x="128" y="83.0" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#412402">Apple Watch</text>
+<text x="128" y="101.0" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#633806">感知 + 决策端</text>
+<text x="128" y="119.0" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#633806">语气+心率双通道</text>
+<text x="128" y="137.0" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#633806">本地融合判断</text>
+<rect x="452" y="55" width="200" height="110" rx="10" fill="#DCEEFB" stroke="#90CFF6" stroke-width="0.5"/>
+<text x="552" y="83.0" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#0C447C">手机 App</text>
+<text x="552" y="101.0" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#185FA5">进程执行端</text>
+<text x="552" y="119.0" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#185FA5">作业进程推进</text>
+<text x="552" y="137.0" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#185FA5">接收指令·界面切换</text>
+<rect x="240" y="280" width="200" height="90" rx="10" fill="#D8F5EC" stroke="#1D9E75" stroke-width="0.5"/>
+<text x="340" y="307.0" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#04342C">作业情境托管装置</text>
+<text x="340" y="325.0" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">光效场景锚点</text>
+<text x="340" y="343.0" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#085041">儿童语音安抚</text>
+<rect x="28" y="280" width="168" height="64" rx="10" fill="#F0EDE6" stroke="#C8C4BC" stroke-width="0.5"/>
+<text x="112" y="303.0" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#2C2C2A">家长</text>
+<text x="112" y="321.0" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#666">佩戴手表 · 操作手机</text>
+<rect x="484" y="280" width="168" height="64" rx="10" fill="#F0EDE6" stroke="#C8C4BC" stroke-width="0.5"/>
+<text x="568" y="303.0" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#2C2C2A">儿童</text>
+<text x="568" y="321.0" text-anchor="middle" dominant-baseline="central" font-size="11" font-weight="400" fill="#666">光效感知 · 语音安抚</text>
+
+<!-- ① watch→phone: 状态数据+临界指令（橙实线） -->
+<path d="M 228 95 L 452 95" fill="none" stroke="#BA7517" stroke-width="1.5" marker-end="url(#arr-o)"/>
+<rect x="264" y="74" width="152" height="28" rx="4" fill="#f7f4ef" stroke="#EF9F27" stroke-width="0.5"/>
+<text x="340" y="81.0" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#633806">状态数据 + 临界触发指令</text>
+<text x="340" y="95.0" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#633806">BLE 蓝牙</text>
+
+<!-- ② phone→watch: 辅导状态同步（灰虚线） -->
+<path d="M 452 125 L 228 125" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr-gr)"/>
+<rect x="278" y="128" width="144" height="22" rx="4" fill="#f7f4ef" stroke="#C8C4BC" stroke-width="0.5"/>
+<text x="350" y="139.0" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#666">辅导状态同步（可选）</text>
+
+<!-- ③ watch→device: 临界联动（红线） -->
+<path d="M 115 167 L 270 280" fill="none" stroke="#A32D2D" stroke-width="1.5" marker-end="url(#arr-r)"/>
+<rect x="128" y="208" width="124" height="28" rx="4" fill="#f7f4ef" stroke="#A32D2D" stroke-width="0.5"/>
+<text x="190" y="215.0" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#A32D2D">临界状态指令</text>
+<text x="190" y="229.0" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#A32D2D">三端同步联动</text>
+
+<!-- ④ phone→device: 辅导状态BLE（橙实线） -->
+<path d="M 545 167 L 415 280" fill="none" stroke="#BA7517" stroke-width="1.5" marker-end="url(#arr-o)"/>
+<rect x="426" y="208" width="120" height="28" rx="4" fill="#f7f4ef" stroke="#EF9F27" stroke-width="0.5"/>
+<text x="486" y="215.0" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#633806">辅导状态</text>
+<text x="486" y="229.0" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#633806">BLE 蓝牙</text>
+
+<!-- ⑤ watch→parent: 振动+呼吸引导（橙实线） -->
+<path d="M 75 167 L 88 278" fill="none" stroke="#BA7517" stroke-width="1.5" marker-end="url(#arr-o)"/>
+<rect x="18" y="210" width="78" height="28" rx="4" fill="#f7f4ef" stroke="#EF9F27" stroke-width="0.5"/>
+<text x="57" y="217.0" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#633806">振动提示</text>
+<text x="57" y="231.0" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#633806">呼吸引导</text>
+
+<!-- ⑥ device→child: 光效+语音（绿实线） -->
+<path d="M 370 370 L 510 340" fill="none" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#arr-g)"/>
+<rect x="382" y="380" width="88" height="28" rx="4" fill="#f7f4ef" stroke="#1D9E75" stroke-width="0.5"/>
+<text x="426" y="387.0" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#0F6E56">光效感知</text>
+<text x="426" y="401.0" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#0F6E56">语音情绪安抚</text>
+
+<!-- ⑦ phone→parent: 话语替代推送（灰虚） -->
+<path d="M 462 167 L 200 278" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr-gr)"/>
+<rect x="280" y="208" width="104" height="28" rx="4" fill="#f7f4ef" stroke="#C8C4BC" stroke-width="0.5"/>
+<text x="332" y="215.0" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#666">话语替代推送</text>
+<text x="332" y="229.0" text-anchor="middle" dominant-baseline="central" font-size="10" fill="#666">进度视图</text>
+
+<!-- ⑧ parent→phone: 操作（灰实） -->
+<path d="M 196 280 L 452 195" fill="none" stroke="#888780" stroke-width="1" marker-end="url(#arr-gr)"/>
+
+
+<rect x="20" y="420" width="640" height="54" rx="6" fill="none" stroke="#C8C4BC" stroke-width="0.5"/>
+<text x="30" y="435" font-size="11" font-weight="500" fill="#1a1a1a" dominant-baseline="central">图例</text>
+<line x1="72" y1="439" x2="106" y2="439" stroke="#BA7517" stroke-width="1.5" marker-end="url(#arr-o)"/>
+<text x="112" y="439" font-size="10" fill="#666" dominant-baseline="central">状态指令（手表→手机/装置）</text>
+<line x1="320" y1="439" x2="354" y2="439" stroke="#A32D2D" stroke-width="1.5" marker-end="url(#arr-r)"/>
+<text x="360" y="439" font-size="10" fill="#666" dominant-baseline="central">临界联动（三端同步）</text>
+<line x1="530" y1="439" x2="564" y2="439" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#arr-g)"/>
+<text x="570" y="439" font-size="10" fill="#666" dominant-baseline="central">装置对儿童输出</text>
+<line x1="72" y1="461" x2="106" y2="461" stroke="#888780" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#arr-gr)"/>
+<text x="112" y="461" font-size="10" fill="#666" dominant-baseline="central">辅助信息（可选）</text>
+
+</svg>
+</div>
+
+</div>
+
+<script>
+function switchPage(n) {
+  document.querySelectorAll('[id^="page"]').forEach((p,i) => {
+    p.classList.toggle('active', i === n);
+  });
+  document.querySelectorAll('.nav-tab').forEach((t,i) => {
+    t.classList.toggle('active', i === n);
+  });
+  window.scrollTo(0, 0);
+}
+function switchSub(page, sub) {
+  const panels = document.querySelectorAll('#page' + page + ' .sub-panel');
+  const tabs   = document.querySelectorAll('#page' + page + ' .sub-tab');
+  panels.forEach((p, i) => p.classList.toggle('active', i === sub));
+  tabs.forEach((t, i) => t.classList.toggle('active', i === sub));
+}
+</script>
+
+</div>
+</body>
+</html>
