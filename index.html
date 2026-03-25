@@ -55,7 +55,7 @@ body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;backgr
 .grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .card{background:#fff;border:0.5px solid #d4d0c8;border-radius:10px;padding:13px 15px}
 .card-title{font-size:12px;font-weight:500;color:#1a1a1a;margin-bottom:7px}
-.card-body{font-size:11px;color:#666;line-height:1.75}
+.card-
 .chips{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
 .chip{display:inline-block;font-size:10px;padding:2px 7px;border-radius:20px;border:0.5px solid #d4d0c8;background:#f0ece4;color:#666}
 .chip.blue{background:#E1EFFE;color:#0A3D72;border-color:#3B82F6}
@@ -278,24 +278,21 @@ svg { display: block; width: 100%; }
 .badge-new{background:#FEF3C7;color:#92400E;border-color:#F59E0B;font-weight:500}
 .col{display:flex;flex-direction:column;gap:6px}
 
-/* ── mobile responsive ── */
-@media (max-width: 680px) {
+/* ── mobile ── */
+.bottom-nav { display: none; }
 
-  /* body becomes column */
+@media (max-width: 700px) {
   body { flex-direction: column; }
-
-  /* hide left nav */
   .left-nav { display: none; }
 
-  /* bottom tab bar */
   .bottom-nav {
-    display: flex !important;
+    display: flex;
     position: fixed;
     bottom: 0; left: 0; right: 0;
     background: #124275;
     z-index: 200;
     border-top: 0.5px solid rgba(255,255,255,0.15);
-    height: 56px;
+    height: 54px;
   }
   .bottom-nav-tab {
     flex: 1;
@@ -305,50 +302,27 @@ svg { display: block; width: 100%; }
     justify-content: center;
     cursor: pointer;
     gap: 3px;
-    padding: 6px 2px;
-    transition: background .12s;
+    padding: 4px 2px;
     user-select: none;
   }
-  .bottom-nav-tab:hover { background: rgba(255,255,255,0.08); }
   .bottom-nav-tab.active { background: rgba(255,255,255,0.13); }
   .bottom-nav-dot { width: 6px; height: 6px; border-radius: 50%; }
-  .bottom-nav-label {
-    font-size: 9px;
-    color: rgba(255,255,255,0.5);
-    line-height: 1.2;
-    text-align: center;
-  }
+  .bottom-nav-label { font-size: 9px; color: rgba(255,255,255,0.5); text-align: center; line-height: 1.2; }
   .bottom-nav-tab.active .bottom-nav-label { color: #fff; font-weight: 500; }
 
-  /* main content full width, add bottom padding for tab bar */
-  .main {
-    padding: 20px 16px 72px;
-    width: 100%;
-  }
+  .main { padding: 18px 14px 70px; width: 100%; }
 
-  /* tighten grids to single column */
-  .grid-2, .grid-3 { grid-template-columns: 1fr; }
-
-  /* watch grid: 2 cols on mobile */
-  .watch-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 16px !important; }
-
-  /* wireframe grid: 3 cols on mobile is too small, use 2 */
-  .wf-grid { grid-template-columns: repeat(3, minmax(0,1fr)); }
-  .wf-grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)); }
-
-  /* section svg full width */
+  .grid-2 { grid-template-columns: 1fr !important; }
+  .grid-3 { grid-template-columns: 1fr !important; }
+  .watch-grid { grid-template-columns: repeat(2, minmax(0,1fr)) !important; gap: 14px !important; }
+  .wf-grid { grid-template-columns: repeat(3, minmax(0,1fr)) !important; }
+  .wf-grid-4 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+  .inv-grid { grid-template-columns: 1fr !important; }
   .section svg { width: 100% !important; }
-
-  /* sub-tabs wrap nicely */
-  .sub-tabs { gap: 4px; }
-  .sub-tab { font-size: 10px; padding: 4px 10px; }
-
-  /* overview summary cards */
-  .grid-3 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .sub-tab { font-size: 10px; padding: 4px 9px; }
+  .phase-row { flex-direction: column; }
+  .phase-block { border-radius: 6px !important; }
 }
-
-/* hide bottom nav on desktop */
-.bottom-nav { display: none; }
 </style>
 </head>
 <body>
